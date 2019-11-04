@@ -1,6 +1,6 @@
 # BUSCAR PACIENTE POR NOMBRE Y APELLIDO
 ---
-**ID**: 02 **Descripción**: Se introduce el nombre y apellido del paciente que se busca y el sistema lo muestra.
+**ID**: 02 **Descripción**: Se introduce el DNI del paciente que se busca y el sistema lo muestra.
 
 **Actores principales**: Secretario **Actores secundarios**:Paciente.
 
@@ -12,7 +12,7 @@
 
  1. El secretario desea consultar los datos de un paciente
  2. El secretario abre el cuadro de dialogo de busqueda en el menu principal
- 3. El secretario introduce el nombre y apellidos del paciente
+ 3. El secretario introduce el DNI del paciente
  4. El sistema muestra por pantalla los datos del paciente
 
 **Postcondiciones**:
