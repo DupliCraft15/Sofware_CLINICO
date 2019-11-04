@@ -1,4 +1,4 @@
-# BUSCAR PACIENTE POR NOMBRE Y APELLIDO
+# BUSCAR PACIENTE POR DNI
 ---
 **ID**: 02 **Descripción**: Se introduce el DNI del paciente que se busca y el sistema lo muestra.
 
