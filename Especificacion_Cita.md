@@ -8,13 +8,13 @@ Esta clase contendrá las funciones que engloban al tratado de citas. Entre ella
 ---
 Datos
 ---
-* Fecha			|| Cadena de caracteres||Nombre del tratamiento
+* Fecha                 || Cadena de caracteres||Nombre del tratamiento
 
-* DNI_paciente		|| Cadena de caracteres||Dni del paciente de la cita
+* DNI_paciente          || Cadena de caracteres||Dni del paciente de la cita
 
-* Nombre_Paciente	|| Cadena de caracteres||Nombre y apellidos del paciente en cuestión
+* Nombre_Paciente       || Cadena de caracteres||Nombre y apellidos del paciente en cuestión
 
-* Motivo		|| Cadena de caracteres||Especificación de la causa por la que se pide la cita
+* Motivo                || Cadena de caracteres||Especificación de la causa por la que se pide la cita
 
 ---
 Métodos
