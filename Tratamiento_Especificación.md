@@ -9,11 +9,11 @@ Una lista que guarda los tratamientos y la duración de estos los cuales le corr
 ---
 	Datos 
 ---
-* nombredeltratamiento || Cadena de carracteres || Nombre del tratamiento
+* nombredeltratamiento || Cadena de caracteres || Nombre del tratamiento
 
-* duración || Cadena de carracteres || Duracion del tratamiento 
+* duración || Cadena de caracteres || Duracion del tratamiento 
 
-* dnidelpaciente || Cadena de carracteres || Dni del paciente al que le corresponde el tratamiento
+* dnidelpaciente || Cadena de caracteres || Dni del paciente al que le corresponde el tratamiento
 
 ---
 	Metodo 
