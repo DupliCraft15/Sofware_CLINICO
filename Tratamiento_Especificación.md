@@ -4,7 +4,7 @@
 ---
 	Clase: Tratamiento 
 ---
-Una lista que guarda los tratamientos y la duracion de este que le corresponde a cada paciente.
+Una lista que guarda los tratamientos y la duración de estos los cuales le corresponde a cada paciente.
 
 ---
 	Datos 
