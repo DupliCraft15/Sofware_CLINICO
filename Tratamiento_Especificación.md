@@ -4,7 +4,7 @@
 ---
 ---
 
-'**Clase:** Tratamiento'
+	**Clase:** Tratamiento 
 
 ---
 ---
