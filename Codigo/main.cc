@@ -125,7 +125,7 @@ void pausa()
 
 {
 
-    cout << "Pulsa una tecla para continuar...";
+    cout << "Pulsa una tecla para continuar...\n";
 
     getwchar();
 
