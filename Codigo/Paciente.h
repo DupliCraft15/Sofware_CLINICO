@@ -15,6 +15,7 @@ class Paciente
 private:
 	string dni_,nombre_,apellidos_,direccion_;
 	int edad_;
+	list <Persona>personas_;
 
 
 public:
@@ -40,6 +41,7 @@ public:
 		inline	string   getApellidos 		 (){return apellidos_;};
 		inline	string   getDireccion		 (){return direccion_;};
 		inline  int      getEdad			 (){return edad_;};
+		inline list<Persona> getListaPersonas(){return personas_;};
 };
 
 #endif
