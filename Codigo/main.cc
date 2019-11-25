@@ -1,6 +1,8 @@
-#include <iostream>
-
+#include "Paciente.h"
+#include "Tratamiento.h"
+#include "Main.h"
 #include <cstdlib>
+#include <iostream>
 
 
 using namespace std;
@@ -51,59 +53,39 @@ int main()
 
 			case '1':
 
-				cout << "Has elejido Opciones acerca del paciente.\n";
+				OpcionesPaciente();
 
 				pausa();
 
-				break;
-
-
+			break;
 
 			case '2':
 
-				cout << "Has elejido Opciones acerca de los tratamientos.\n";
+				OpcionesTratamiento();
 
 				pausa();
 
-				break;
-
-
+			break;
 
 			case '3':
 
-				cout << "Has elejido Opciones acerca de las citas.\n";
-
 				pausa();
-
 				break;
-
-
 
 			case '4':
 
-				cout << "Has elejido Calendario.\n";
-
 				pausa();
-
 				break;
-
-
 
 			case '5':
 
-				cout << "Gracias por utilizar nuestro programa.\n";
+			bandera=true;
 
-				bandera=true;
+			exit(1);
 
-				exit(1);
-
-				break;
-
-
+			break;
 
 			default:
-
-				cout << "Opcion no valida.\a\n";
 
 				pausa();
 
@@ -112,14 +94,9 @@ int main()
 		}
 
     }while(bandera!=true);
-
-
-
     return 0;
 
-}
-
-
+};
 
 void pausa()
 
@@ -132,3 +109,5 @@ void pausa()
     getwchar();
 
 }
+
+
