@@ -90,10 +90,24 @@ void OpcionesPaciente(){
 		    }while(bandera!=true);
 
 
+}
+
+
+
+
+void Paciente::AnadirPaciente(){
+
+	Paciente p;
+
+	paceintes_.clear();
+
+
+
 
 
 
 }
+
 
 
 
