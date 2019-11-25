@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 void OpcionesPaciente(){
 	bool bandera=false;
 
@@ -99,6 +98,10 @@ void OpcionesPaciente(){
 
 
 }
+
+
+
+
 
 
 
