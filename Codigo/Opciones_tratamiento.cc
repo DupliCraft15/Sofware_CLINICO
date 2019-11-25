@@ -1,11 +1,14 @@
 #include "Tratamiento.h"
-
+#include "Paciente.h"
+#include "Main.h"
+#include <unistd.h>
 
 
 using namespace std;
 
 
-void OpcionesTratamiento(){
+void OpcionesTratamiento()
+{
 
 
 
@@ -55,7 +58,6 @@ void OpcionesTratamiento(){
 
 						//AnadirTratamiento();
 
-						pausa();
 
 						break;
 
@@ -65,8 +67,6 @@ void OpcionesTratamiento(){
 
 						//ConsultarTratamiento();
 
-						pausa();
-
 						break;
 
 
@@ -75,7 +75,6 @@ void OpcionesTratamiento(){
 
 						//ModificarTratamiento();
 
-						pausa();
 
 						break;
 
@@ -85,21 +84,20 @@ void OpcionesTratamiento(){
 
 						//BorrarTratamiento();
 
-						pausa();
 
 						break;
 
 					case '5':
 
-					pausa();
-					break;
+						bandera=true;
+
+						break;
 
 					default:
 
-						cout << "Opcion no valida.\a\n";
+						cout << "Opcion no valida.(Espere 3 segundos hasta que se cierre la ventana)\a\n";
 
-						pausa();
-
+						sleep(3);
 						break;
 
 				}

@@ -3,6 +3,7 @@
 #include "Main.h"
 #include <cstdlib>
 #include <iostream>
+#include <unistd.h>
 
 
 using namespace std;
@@ -22,7 +23,6 @@ int main()
 	do
 
     {
-
         cin.clear();
 
         cout << "Clinica ______" << endl;
@@ -55,40 +55,37 @@ int main()
 
 				OpcionesPaciente();
 
-				pausa();
-
 			break;
 
 			case '2':
 
 				OpcionesTratamiento();
 
-				pausa();
 
 			break;
 
 			case '3':
 
-				pausa();
+
 				break;
 
 			case '4':
 
-				pausa();
 				break;
 
 			case '5':
 
-			bandera=true;
+				bandera=true;
 
-			exit(1);
+				exit(1);
 
-			break;
+				break;
 
 			default:
 
-				pausa();
+				cout << "Opcion no valida.(Espere 3 segundos hasta que se cierre la ventana)\a\n";
 
+				sleep(3);
 				break;
 
 		}
@@ -98,16 +95,5 @@ int main()
 
 };
 
-void pausa()
-
-{
-
-    cout << "Pulsa una tecla para continuar...\n";
-
-    getwchar();
-
-    getwchar();
-
-}
 
 
