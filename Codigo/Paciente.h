@@ -15,7 +15,7 @@ class Paciente
 private:
 	string dni_,nombre_,apellidos_,direccion_;
 	int edad_;
-	list <pacientes>paciente_;
+	list <Pacientes>pacientes_;
 
 
 public:
@@ -34,14 +34,14 @@ public:
 		inline	void setNombre    (string nombre)    {nombre=nombre_;};
 		inline	void setApellidos (string apellidos) {apellidos=apellidos_;};
 		inline	void setDireccion (string direccion) {direccion=direccion_;};
-		inline	bool setEdad      (int    edad)      {edad_=edad;};
+		inline	void setEdad      (int    edad)      {edad_=edad;};
 
 		inline	string   getDNI      		 (){return dni_;};
 		inline	string   getNombre   		 (){return nombre_;};
 		inline	string   getApellidos 		 (){return apellidos_;};
 		inline	string   getDireccion		 (){return direccion_;};
 		inline  int      getEdad			 (){return edad_;};
-		inline list<pacientes> getListaPacientes(){return pacientes_;};
+		inline list<Pacientes> getListaPacientes(){return pacientes_;};
 };
 
 #endif

@@ -42,8 +42,14 @@ void OpcionesPaciente(){
 			{
 
 				case '1':
+						AnadirPaciente();
 
-						//AnadirPaciente();
+						if(AnadirPaciente()==true){
+							cout<<"Paciente guardado con exito"<<endl;
+						}
+						else{
+							cout<< "El paciente introducido ya existente"
+						}
 
 						break;
 
@@ -51,7 +57,8 @@ void OpcionesPaciente(){
 
 					case '2':
 
-						//BuscarPaciente();
+						BuscarPaciente();
+						Mostrarpaciente()
 
 						break;
 
@@ -95,18 +102,70 @@ void OpcionesPaciente(){
 
 
 
-void Paciente::AnadirPaciente(){
+bool Paciente::AnadirPaciente(){
 
-	Paciente p;
+	string dni,nombre,apellidos,direccion;
+	int edad;
 
-	paceintes_.clear();
+	cout << "A continuación introduzca los datos del paciente a añadir: "<< endl;
+	cout << "DNI: "; cin >> dni; cout <<"\t";
+	cout << "Nombre: "; cin >> nombre; cout <<"\t";
+	cout << "Apellidos: "; cin >> apellidos; cout <<"\t";
+	cout << "Edad: "; cin >> edad; cout <<"\t";
+	cout << "Direcccion: "; cin >> direccion; cout <<"\t";
 
 
+	Paciente p(dni,nombre,apellidos,edad,direccion);
 
 
+	list<Pacientes>:: iterator i;
+	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
+	{
 
+		if((*i).getDNI() == p.getDNI())
+			return false;
+	}
 
+	pacientes_.push_back(p);
+	string nombrefichero="JUGADORES.txt";
+	fstream fichero(nombrefichero.c_str(), ios::in);
+	if(!fichero)
+	{
+			fichero.close();
+			fichero.open(nombrefichero.c_str(), ios::out);
+			fichero.close();
+			return true;
+		}
+	else
+		{
+			fichero.close();
+		}
 }
+
+
+void Paciente::BuscarPaciente()
+{
+	string dni;
+	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
+	cout << "DNI: "; cin >> dni; cout <<"\t";
+	list<Pacientes>:: iterator i;
+
+	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
+	{
+
+		if((*i).getDNI() == dni)
+		{
+			cout<<(i*).getDNI()<<endl;
+			cout<<(i*).getNombre()<<endl;
+			cout<<(i*).getApellidos()<<endl;
+			cout<<(i*).getEdad()<<endl;
+			cout<<(i*).getDireccion()<<endl;
+
+		}
+		else{cout<<"Paciente no encontrado";}
+}
+
+
 
 
 
