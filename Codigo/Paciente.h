@@ -14,12 +14,10 @@ class Paciente
 private:
 	string dni_,nombre_,apellidos_,direccion_;
 	int edad_;
-
+	list <Paciente> pacientes_;
 
 
 public:
-
-	list <Paciente> pacientes_;
 
 	Paciente(string dni_,string nombre_="",string apellidos_="",int edad_=0,string direccion_="");
 
@@ -39,5 +37,6 @@ public:
 	};
 	bool AnadirPaciente();
 	void BuscarPaciente();
+	void ModificarPaciente();
 
 #endif

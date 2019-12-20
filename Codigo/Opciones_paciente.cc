@@ -2,6 +2,7 @@
 //#include "Tratamiento.h"
 #include "Main.h"
 #include <unistd.h>
+#include <string>
 using namespace std;
 
 void OpcionesPaciente(){
@@ -15,11 +16,9 @@ void OpcionesPaciente(){
 		do
 			{
 				system("clear");
-		        cin.clear();
-		        cout << "----------------------------------" << endl << endl;
-
-		        cout << "OPCIONES ACERCA DEL PACIENTE______" << endl;
-
+				cin.clear();
+				cout << "----------------------------------" << endl << endl;
+				cout << "OPCIONES ACERCA DEL PACIENTE______" << endl;
 		        cout << "----------------------------------" << endl << endl;
 
 		        cout << "\t1 .- Añadir nuevo paciente" << endl;
@@ -32,11 +31,11 @@ void OpcionesPaciente(){
 
 		        cout << "\t5 .- Volver al menú principal" << endl;
 
-
 		        cout << "Elije una opcion: ";
 
-			cin >> tecla;
-			switch(tecla)
+		    cin >> tecla;
+
+		    switch(tecla)
 
 			{
 
@@ -55,35 +54,37 @@ void OpcionesPaciente(){
 
 				case '2':
 					BuscarPaciente();
-					break;
 
-					case '3':
+				break;
 
-					//ModificarPaciente();
+				case '3':
 
-						break;
-
+					ModificarPaciente();
 
 
-					case '4':
-
-						//BorrarPaciente();
+				break;
 
 
-						break;
 
-					case '5':
+				case '4':
+
+					//BorrarPaciente();
+
+
+				break;
+
+				case '5':
 
 						bandera=true;
-						break;
+				break;
 
-					default:
+				default:
 
 						cout << "Opcion no valida.(Espere 3 segundos hasta que se cierre la ventana)\a\n";
 
 						sleep(3);
 
-						break;
+				break;
 
 				}
 
@@ -94,12 +95,12 @@ void OpcionesPaciente(){
 
 
 
-bool Paciente::AnadirPaciente(){
+bool AnadirPaciente(){
 
 	string dni,nombre,apellidos,direccion;
 	int edad;
 
-	cout << "A continuación introduzca los datos del paciente a añadir: "<< endl;
+	cout << "A continuación introduzca los datos del paciente a añadir: (ATENCIÓN el DNI del paciente no se podrá modificar en caso de introducirlo incorrectamente)"<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
 	cout << "Nombre: "; cin >> nombre; cout <<"\t";
 	cout << "Apellidos: "; cin >> apellidos; cout <<"\t";
@@ -119,7 +120,7 @@ bool Paciente::AnadirPaciente(){
 	}
 
 	pacientes_.push_back(p);
-	string nombrefichero="JUGADORES.txt";
+	string nombrefichero="PACIENTES.txt";
 	fstream fichero(nombrefichero.c_str(), ios::in);
 	if(!fichero)
 	{
@@ -135,7 +136,7 @@ bool Paciente::AnadirPaciente(){
 }
 
 
-void Paciente::BuscarPaciente()
+void BuscarPaciente()
 {
 	string dni;
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
@@ -158,44 +159,85 @@ void Paciente::BuscarPaciente()
 	}
 }
 
-void Paciente::ModificarPaciente()
+void ModificarPaciente()
 {
 
-	string dni,nombre,apellidos,direccion;
-	int edad;
-
-	cout << "A continuación introduzca los datos del paciente a añadir: "<< endl;
+	string dni;
+	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
-	cout << "Nombre: "; cin >> nombre; cout <<"\t";
-	cout << "Apellidos: "; cin >> apellidos; cout <<"\t";
-	cout << "Edad: "; cin >> edad; cout <<"\t";
-	cout << "Direcccion: "; cin >> direccion; cout <<"\t";
-
-
-	Paciente p(dni,nombre,apellidos,edad,direccion);
-
 
 	list<Paciente>:: iterator i;
+
+
 	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 	{
 
-		if((*i).getDNI() == p.getDNI())
-			return false;
+		if((*i).getDNI() == dni)
+		{
+
+			char tecla;
+			int edad;
+			string variable_a_cambiar;
+
+
+			cout << "Seleccione el campo a modificar (Para modificar más de un campo repita la operación)"<< endl;
+			cout << "\t1 .- Nombre" << endl;
+			cout << "\t2 .- Apellidos" << endl;
+			cout << "\t3 .- Edad" << endl;
+			cout << "\t4 .- Direccción" << endl;
+
+
+				switch(tecla)
+				{
+					case '1':
+					cout<<"Introduzca el Nombre: ";
+					cin>> variable_a_cambiar;
+					(*i).setNombre(variable_a_cambiar);
+
+					break;
+
+					case '2':
+					cout<<"Introduzca los apellidos: ";
+					cin>> variable_a_cambiar;
+					(*i).setApellidos(variable_a_cambiar);
+
+					break;
+
+					case '3':
+					cout<<"Introduzca la Edad: ";
+					cin>> edad;
+					(*i).setEdad(edad);
+					break;
+					case '4':
+					cout<<"Introduzca la Dirección: ";
+					cin>> variable_a_cambiar;
+					(*i).setDireccion(variable_a_cambiar);
+					break;
+
+					default:
+
+					cout<<"Opción incorrecta"<<endl;
+
+					break;
+				}
+			}
+
+		else
+
+		{
+			cout << "Paciente no encontrado"<< endl;
+		}
+
 	}
 
-	pacientes_.push_back(p);
-	string nombrefichero="JUGADORES.txt";
-	fstream fichero(nombrefichero.c_str(), ios::in);
-	if(!fichero)
+	ofstream fichero("PACIENTES.txt");
+	list <Paciente> :: iterator aux;
+
+	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
 	{
-			fichero.close();
-			fichero.open(nombrefichero.c_str(), ios::out);
-			fichero.close();
-			return true;
-		}
-	else
-		{
-			fichero.close();
-		}
+		fichero << "," << (*aux).getNombre() << "," << (*aux).getApellidos();
+		fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion();
+	}
+	fichero.close();
 
 }
