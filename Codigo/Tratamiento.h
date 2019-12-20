@@ -3,8 +3,10 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include <stdlib.h>
+#include <string>
+#include <list>
 #include "Main.h"
+using namespace std;
 
 void OpcionesTratamiento();
 

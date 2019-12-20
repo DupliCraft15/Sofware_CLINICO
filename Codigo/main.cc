@@ -1,11 +1,9 @@
 #include "Paciente.h"
-#include "Tratamiento.h"
+//#include "Tratamiento.h"
 #include "Main.h"
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h>
-
-
 using namespace std;
 
 
@@ -56,22 +54,15 @@ int main()
 				OpcionesPaciente();
 
 			break;
-
 			case '2':
-
-				OpcionesTratamiento();
-
+			//OpcionesTratamiento();
+			break;
+			case '3':
 
 			break;
 
-			case '3':
-
-
-				break;
-
 			case '4':
-
-				break;
+			break;
 
 			case '5':
 
