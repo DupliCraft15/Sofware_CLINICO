@@ -58,7 +58,7 @@ void OpcionesPaciente(){
 					case '2':
 
 						BuscarPaciente();
-						Mostrarpaciente()
+						Mostrarpaciente();
 
 						break;
 
