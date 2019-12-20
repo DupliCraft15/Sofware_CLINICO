@@ -49,6 +49,16 @@ void OpcionesPaciente(){
 							cout<< "El paciente introducido ya existente"<<endl;
 						}
 
+						break;
+
+
+
+					case '2':
+
+						BuscarPaciente();
+						Mostrarpaciente();
+
+						break;
 				break;
 
 
