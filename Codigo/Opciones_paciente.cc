@@ -1,8 +1,7 @@
 #include "Paciente.h"
-#include "Tratamiento.h"
+//#include "Tratamiento.h"
 #include "Main.h"
 #include <unistd.h>
-
 using namespace std;
 
 void OpcionesPaciente(){
@@ -25,7 +24,7 @@ void OpcionesPaciente(){
 
 		        cout << "\t1 .- Añadir nuevo paciente" << endl;
 
-		        cout << "\t2 .- Realizar búsqueda de un paciente" << endl;
+		        cout << "\t2 .- Mostrar datos paciente" << endl;
 
 		        cout << "\t3 .- Modificar datos de un paciente" << endl;
 
@@ -48,7 +47,7 @@ void OpcionesPaciente(){
 							cout<<"Paciente guardado con exito"<<endl;
 						}
 						else{
-							cout<< "El paciente introducido ya existente"
+							cout<< "El paciente introducido ya existente"<<endl;
 						}
 
 						break;
@@ -61,12 +60,16 @@ void OpcionesPaciente(){
 						Mostrarpaciente();
 
 						break;
+				break;
 
 
+				case '2':
+					BuscarPaciente();
+					break;
 
 					case '3':
 
-						//ModificarPaciente();
+					//ModificarPaciente();
 
 						break;
 
@@ -101,7 +104,6 @@ void OpcionesPaciente(){
 
 
 
-
 bool Paciente::AnadirPaciente(){
 
 	string dni,nombre,apellidos,direccion;
@@ -118,7 +120,7 @@ bool Paciente::AnadirPaciente(){
 	Paciente p(dni,nombre,apellidos,edad,direccion);
 
 
-	list<Pacientes>:: iterator i;
+	list<Paciente>:: iterator i;
 	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 	{
 
@@ -148,29 +150,62 @@ void Paciente::BuscarPaciente()
 	string dni;
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
-	list<Pacientes>:: iterator i;
+	list<Paciente>:: iterator i;
 
 	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 	{
 
 		if((*i).getDNI() == dni)
 		{
-			cout<<(i*).getDNI()<<endl;
-			cout<<(i*).getNombre()<<endl;
-			cout<<(i*).getApellidos()<<endl;
-			cout<<(i*).getEdad()<<endl;
-			cout<<(i*).getDireccion()<<endl;
+			cout<<i->getDNI()<<endl;
+			cout<<i->getNombre()<<endl;
+			cout<<i->getApellidos()<<endl;
+			cout<<i->getEdad()<<endl;
+			cout<<i->getDireccion()<<endl;
 
 		}
 		else{cout<<"Paciente no encontrado";}
+	}
 }
 
+void Paciente::ModificarPaciente()
+{
+
+	string dni,nombre,apellidos,direccion;
+	int edad;
+
+	cout << "A continuación introduzca los datos del paciente a añadir: "<< endl;
+	cout << "DNI: "; cin >> dni; cout <<"\t";
+	cout << "Nombre: "; cin >> nombre; cout <<"\t";
+	cout << "Apellidos: "; cin >> apellidos; cout <<"\t";
+	cout << "Edad: "; cin >> edad; cout <<"\t";
+	cout << "Direcccion: "; cin >> direccion; cout <<"\t";
 
 
+	Paciente p(dni,nombre,apellidos,edad,direccion);
 
 
+	list<Paciente>:: iterator i;
+	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
+	{
 
+		if((*i).getDNI() == p.getDNI())
+			return false;
+	}
 
+	pacientes_.push_back(p);
+	string nombrefichero="JUGADORES.txt";
+	fstream fichero(nombrefichero.c_str(), ios::in);
+	if(!fichero)
+	{
+			fichero.close();
+			fichero.open(nombrefichero.c_str(), ios::out);
+			fichero.close();
+			return true;
+		}
+	else
+		{
+			fichero.close();
+		}
 
-
-
+}

@@ -3,8 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include <stdlib.h>
-
+using namespace std;
 
 void pausa();
 

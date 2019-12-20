@@ -3,37 +3,31 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include <stdlib.h>
+#include <string>
+#include <list>
 #include "Main.h"
-
+using namespace std;
 void OpcionesPaciente();
-
-
 class Paciente
 {
 
 private:
 	string dni_,nombre_,apellidos_,direccion_;
 	int edad_;
-	list <Pacientes>pacientes_;
+
 
 
 public:
-	Paciente(string dni,string nombre="",string apellidos="",edad=0,string direccion="")
-	{
 
-			dni_=dni;
-			nombre_=nombre;
-			apellidos_=apellidos;
-			direccion_=direccion;
-			edad_=edad;
+	list <Paciente> pacientes_;
 
-		}
+	Paciente(string dni_,string nombre_="",string apellidos_="",int edad_=0,string direccion_="");
 
-		inline	void setDNI       (string dni)       {dni=dni_;};
-		inline	void setNombre    (string nombre)    {nombre=nombre_;};
-		inline	void setApellidos (string apellidos) {apellidos=apellidos_;};
-		inline	void setDireccion (string direccion) {direccion=direccion_;};
+
+		inline	void setDNI       (string dni)       {dni_=dni;};
+		inline	void setNombre    (string nombre)    {nombre_=nombre;};
+		inline	void setApellidos (string apellidos) {apellidos_=apellidos;};
+		inline	void setDireccion (string direccion) {direccion_=direccion;};
 		inline	void setEdad      (int    edad)      {edad_=edad;};
 
 		inline	string   getDNI      		 (){return dni_;};
@@ -41,7 +35,9 @@ public:
 		inline	string   getApellidos 		 (){return apellidos_;};
 		inline	string   getDireccion		 (){return direccion_;};
 		inline  int      getEdad			 (){return edad_;};
-		inline list<Pacientes> getListaPacientes(){return pacientes_;};
-};
+		inline list<Paciente> getListaPacientes(){return pacientes_;};
+	};
+	bool AnadirPaciente();
+	void BuscarPaciente();
 
 #endif
