@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h>
+#include <string>
 using namespace std;
 
 
@@ -53,7 +54,7 @@ int main()
 
 			case '1':
 
-				OpcionesPaciente();
+				OpcionesPaciente(pacientes_);
 
 			break;
 			case '2':
