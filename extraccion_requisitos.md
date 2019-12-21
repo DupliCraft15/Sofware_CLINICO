@@ -1,9 +1,9 @@
 # Extracción de requisitos
---
+
 ### Partes interesadas:
 * Clínica Médica
 * Desarrolladores del Grupo 37
---
+
 ### Datos a almacenar:
 > **Pacientes:** 
  * Nombre y Apellidos
@@ -21,7 +21,7 @@
 > **Tratamiento:**
  *  Nombre del medicamento
  *  Duracion
---
+
 ### Requisitos
 
 **Funcionales:**
