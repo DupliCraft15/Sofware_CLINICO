@@ -16,6 +16,8 @@ int main()
 
 	char tecla;
 
+	list <Paciente> pacientes_;
+
 
 
 	do

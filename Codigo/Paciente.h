@@ -14,7 +14,6 @@ class Paciente
 private:
 	string dni_,nombre_,apellidos_,direccion_;
 	int edad_;
-	list <Paciente> pacientes_;
 
 
 public:
@@ -33,7 +32,6 @@ public:
 		inline	string   getApellidos 		 (){return apellidos_;};
 		inline	string   getDireccion		 (){return direccion_;};
 		inline  int      getEdad			 (){return edad_;};
-		inline list<Paciente> getListaPacientes(){return pacientes_;};
 	};
 	bool AnadirPaciente();
 	void BuscarPaciente();
