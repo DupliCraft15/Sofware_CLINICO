@@ -1,6 +1,6 @@
 # Extracción de requisitos
 
-### Partes interesadas:
+### Interesados:
 * Clínica Médica
 * Desarrolladores del Grupo 37
 
