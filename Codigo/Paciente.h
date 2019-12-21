@@ -7,7 +7,7 @@
 #include <list>
 #include "Main.h"
 using namespace std;
-void OpcionesPaciente();
+
 class Paciente
 {
 
@@ -18,7 +18,7 @@ private:
 
 public:
 
-	Paciente(string dni_,string nombre_="",string apellidos_="",int edad_=0,string direccion_="");
+	Paciente(string dni_,string nombre_="",string apellidos_="",int edad_=0,string direccion_=""){}
 
 
 		inline	void setDNI       (string dni)       {dni_=dni;};
@@ -33,8 +33,9 @@ public:
 		inline	string   getDireccion		 (){return direccion_;};
 		inline  int      getEdad			 (){return edad_;};
 	};
-	bool AnadirPaciente();
-	void BuscarPaciente();
-	void ModificarPaciente();
+	void OpcionesPaciente(list <Paciente> &pacientes_);
+	bool AnadirPaciente(list <Paciente> &pacientes_);
+	void BuscarPaciente(list <Paciente> &pacientes_);
+	void ModificarPaciente(list <Paciente> &pacientes_);
 
 #endif
