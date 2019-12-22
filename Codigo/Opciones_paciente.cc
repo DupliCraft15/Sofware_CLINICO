@@ -2,6 +2,7 @@
 #include "Tratamiento.h"
 #include "Main.h"
 #include <unistd.h>
+#include <fstream>
 
 using namespace std;
 
@@ -99,15 +100,59 @@ void Paciente::AnadirPaciente(){
 
 	Paciente p;
 
-	paceintes_.clear();
+	if (ifstream fe("Paciente.txt")= true)
+	{
+		if (comprobarlista(p)=true)
+		{
+			
+		}
+		else
+		{
+			cout<<"Ya existe este paciente"<<endl;
+		}
+	}
+	else
+	{
+		ofstream fs("Paciente.txt");
+		/*string dni;
+		string nombre;
+		string apellido;
+		string direccion;
+		int edad;*/
+
+		cin>>p.dni;
+		cin>>p.nombre;
+		cin>>p.apellido;
+		cin>>p.direccion;
+		cin>>p.edad;
+
+		setDNI(p.dni);
+		setNombre(p.nombre);
+		setApellidos(p.apellidos);
+		setDireccion(p.direccion);
+		setEdad(p.edad);
+
+		fe>>p;
 
 
-
-
-
+	}
+	fs.close();
 
 }
 
+void comprobarlista(Paciente p)
+{
+	ifstream fe("Paciente.txt");
+	while(getline(fe)==true)
+	{
+		if(fe=!p)
+		{
+			return true;
+		}
+
+	}
+	return false;
+}
 
 
 

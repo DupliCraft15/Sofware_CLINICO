@@ -15,7 +15,7 @@ class Paciente
 private:
 	string dni_,nombre_,apellidos_,direccion_;
 	int edad_;
-	list <pacientes>paciente_;
+	list <pacientes> paciente_;
 
 
 public:
