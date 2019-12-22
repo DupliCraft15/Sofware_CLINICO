@@ -24,11 +24,7 @@ public:
 	list <Cita> historial_citas_;
 	list <Tratamiento> historial_tratamiento_;
 
-	Paciente(string dni_,string nombre_="",string apellidos_="",int edad_=0,string direccion_="")
-	{
-		list <Cita> historial_citas_;
-		list <Tratamiento> historial_tratamiento_;
-	}
+	Paciente(string dni_,string nombre_="",string apellidos_="",int edad_=0,string direccion_=""){}
 
 
 		inline	void setDNI       (string dni)       {dni_=dni;};

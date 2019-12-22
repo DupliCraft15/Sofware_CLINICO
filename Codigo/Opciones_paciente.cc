@@ -11,12 +11,8 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 	bool bandera=false;
 
-	ifstream fe("Paciente.txt");
-    if (!fe)
-    {
-    	ofstream ofs("Paciente.txt");
-    }
-
+	ifstream fe("Pacientes.txt");
+    if (!fe){ofstream ofs("Pacientes.txt");}
 
 	char tecla;
 
@@ -98,11 +94,7 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 				}
 
 		    }while(bandera!=true);
-
-
-}
-
-
+		}
 
 bool AnadirPaciente(list <Paciente> &pacientes_){
 
@@ -117,20 +109,18 @@ bool AnadirPaciente(list <Paciente> &pacientes_){
 	cout << "Edad: "; cin >> edad; cout <<"\t";
 	cout << "Direcccion: "; cin >> direccion; cout <<"\t";
 
-
 	Paciente p(dni,nombre,apellidos,edad,direccion);
 
-
 	list<Paciente>:: iterator i;
+
 	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 	{
-
-		if((*i).getDNI() == p.getDNI())
+			if((*i).getDNI() == p.getDNI())
 			return false;
 	}
 
 	pacientes_.push_back(p);
-	string nombrefichero="PACIENTES.txt";
+	string nombrefichero="pacientes.txt";
 	fstream fichero(nombrefichero.c_str(), ios::in);
 	if(!fichero)
 	{
@@ -241,7 +231,7 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 	}
 
-	ofstream fichero("PACIENTES.txt");
+	ofstream fichero("pacientes.txt");
 	list <Paciente> :: iterator aux;
 
 	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
