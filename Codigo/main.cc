@@ -1,11 +1,10 @@
 #include "Paciente.h"
-#include "Tratamiento.h"
+//#include "Tratamiento.h"
 #include "Main.h"
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h>
-
-
+#include <string>
 using namespace std;
 
 
@@ -17,6 +16,8 @@ int main()
 	bool bandera=false;
 
 	char tecla;
+
+	list <Paciente> pacientes_;
 
 
 
@@ -53,25 +54,18 @@ int main()
 
 			case '1':
 
-				OpcionesPaciente();
+				OpcionesPaciente(pacientes_);
 
 			break;
-
 			case '2':
-
-				OpcionesTratamiento();
-
-
+			//OpcionesTratamiento();
 			break;
-
 			case '3':
 
-
-				break;
+			break;
 
 			case '4':
-
-				break;
+			break;
 
 			case '5':
 

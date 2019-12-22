@@ -2,10 +2,8 @@
 #include "Paciente.h"
 #include "Main.h"
 #include <unistd.h>
-
-
+#include <string>
 using namespace std;
-
 
 void OpcionesTratamiento()
 {
@@ -56,20 +54,14 @@ void OpcionesTratamiento()
 
 					case '1':
 
-						//AnadirTratamiento();
+					//AnadirTratamiento();
 
-
-						break;
-
-
+					break;
 
 					case '2':
 
-						//ConsultarTratamiento();
-
-						break;
-
-
+					//ConsultarTratamiento();
+					break;
 
 					case '3':
 

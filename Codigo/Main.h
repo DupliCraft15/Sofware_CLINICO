@@ -2,9 +2,9 @@
 #define MAIN_H
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include <fstream>
-#include <stdlib.h>
-
+using namespace std;
 
 void pausa();
 
