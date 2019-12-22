@@ -1,5 +1,5 @@
 #include "Paciente.h"
-//#include "Tratamiento.h"
+#include "Tratamiento.h"
 #include "Main.h"
 #include <unistd.h>
 #include <fstream>
@@ -10,6 +10,12 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 
 	bool bandera=false;
+
+	ifstream fe("Paciente.txt");
+    if (!fe)
+    {
+    	ofstream ofs("Paciente.txt");
+    }
 
 
 	char tecla;
@@ -71,7 +77,7 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 				case '4':
 
-					//BorrarPaciente();
+					BorrarPaciente(pacientes_);
 
 
 				break;
@@ -132,11 +138,11 @@ bool AnadirPaciente(list <Paciente> &pacientes_){
 			fichero.open(nombrefichero.c_str(), ios::out);
 			fichero.close();
 			return true;
-		}
+	}
 	else
-		{
+	{
 			fichero.close();
-		}
+	}
 }
 
 

@@ -14,7 +14,11 @@ void OpcionesTratamiento()
 
 			char tecla;
 
-
+			ifstream fe("Tratamiento.txt");
+		    if (!fe)
+		    {
+		    	ofstream ofs("Tratamiento.txt");
+		    }
 
 			do
 
@@ -95,9 +99,5 @@ void OpcionesTratamiento()
 				}
 
 		    }while(bandera!=true);
-
-
-
-
 
 }

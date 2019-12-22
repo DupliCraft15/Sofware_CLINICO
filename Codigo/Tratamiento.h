@@ -6,17 +6,19 @@
 #include <string>
 #include <list>
 #include "Main.h"
+#include "Paciente.h"
 using namespace std;
 
 void OpcionesTratamiento();
 
 class Tratamiento : public Paciente
 {
-	private:
+private:
 	string nombredeltratamiento_;
 	string duracion_;
 
-	public:
+public:
+
 	Tratamiento(string nombredeltratamiento="",string duracion=""):
 	Paciente(dni,nombre,apellidos,edad,direccion)
 	{

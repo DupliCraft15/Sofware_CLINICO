@@ -6,10 +6,11 @@
 #include <stdlib.h>
 #include "Main.h"
 #include "Paciente.h"
+#include "Tratamiento.h"
 
 void OpcionesCita();
 
-class Cita :
+class Cita
 {
 	private:
 	string fecha_;
@@ -23,13 +24,10 @@ class Cita :
 	inline void setMotivo(string motivo) {motivo_=motivo;};
 	inline string getFecha() {return fecha_;};
 	inline string getMotivo() {return motivo_;};
-};
+	};
 
 
-	void MostrarHistorialCitas()
-	{
-
-	}
+	void MostrarHistorialCitas();
 
 
 

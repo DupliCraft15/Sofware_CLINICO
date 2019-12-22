@@ -1,5 +1,6 @@
 #include "Paciente.h"
-//#include "Tratamiento.h"
+#include "Tratamiento.h"
+#include "Cita.h"
 #include "Main.h"
 #include <cstdlib>
 #include <iostream>
@@ -18,7 +19,7 @@ int main()
 	char tecla;
 
 	list <Paciente> pacientes_;
-
+	Cita P;
 
 
 	do
@@ -57,14 +58,23 @@ int main()
 				OpcionesPaciente(pacientes_);
 
 			break;
+
 			case '2':
-			//OpcionesTratamiento();
+
+				//OpcionesTratamiento();
+
 			break;
+
 			case '3':
+
+				//OpcionesCita(P);
 
 			break;
 
 			case '4':
+
+				//Calendario();
+
 			break;
 
 			case '5':
