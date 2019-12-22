@@ -13,29 +13,25 @@ void OpcionesCita();
 class Cita
 {
 	private:
-	int day,month,year,identificador;
+	int day_,month_,year_,hora_;
 	string motivo_;
 
 
 	public:
 
-	Cita(int day_=0,month_=0,year_=0,string motivo_=""){}
+	Cita(int day_=0,month_=0,year_=0, hora_=0, string motivo_=""){}
 
 	inline void setDay(string day) {day_=fecha;};
 	inline void setMonth(string moth) {month_=fecha;};
 	inline void setYear(string year) {year_=fecha;};
 	inline void setMotivo(string motivo) {motivo_=motivo;};
-
-	void setIdentificador() {
-		identificador=rand()%100;
-		identificador_=identificador;
-	}
+	inline void setTime(string hora) {hora_=fecha;}
 
 
-	inline int geDay() {return day_;};
+	inline int getDay() {return day_;};
 	inline int getMonth() {return month_;};
 	inline int getYear() {return year_;};
-	inline int getIdentificador(){return identificador_;};
+	inline int getTime(){return time_;};
 	inline string getMotivo() {return motivo_;};
 	};
 
