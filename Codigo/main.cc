@@ -19,7 +19,7 @@ int main()
 	char tecla;
 
 	list <Paciente> pacientes_;
-	Cita P;
+	list <Cita> citas_
 
 
 	do

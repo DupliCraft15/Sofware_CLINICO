@@ -28,7 +28,11 @@ void OpcionesCita()
 				cout << "OPCIONES ACERCA DE LAS CITAS______" << endl;
 		        cout << "----------------------------------" << endl << endl;
 
+<<<<<<< HEAD
 		        cout << "\t1 .- Añadir cita" << endl;
+=======
+		        cout << "\t1 .- Añadir nueva cita" << endl;
+>>>>>>> d7fd2b4f7dcc3f496e19a449482977414d6a8fbc
 
 		        cout << "\t2 .- Mostrar la siguiente cita" << endl;
 
@@ -94,6 +98,7 @@ void OpcionesCita()
 		    }while(bandera!=true);
 }
 
+
 int BorrarCita(list <cita> &pacientes_)
 {
 	string dni;
@@ -138,3 +143,34 @@ int BorrarCita(list <cita> &pacientes_)
 	}
 
 }
+
+void AnadirCita(list <Cita> &citas_)
+
+{
+	int dia,mes,año;
+	string motivo;
+	cout << "Introduzca los datos de la cita"<< endl;
+	cout <<"\t";
+	cout << "Día: "; cin >> dia; cout <<"\t";
+	cout << "Mes: "; cin >> mes; cout <<"\t";
+	cout << "Año: "; cin >> año; cout <<"\t";
+	cout << "Motivo de la cita: "; cin >> motivo; cout <<"\t";
+	Cita c(dia,mes,año,motivo);
+	list<Cita>:: iterator i;
+	((i*).historial_citas_.push_back(c));
+	citas_.push_back(c);
+	string nombrefichero="citas.txt";
+
+	fstream fichero(nombrefichero.c_str(), ios::in);
+	if(!fichero)
+	{
+			fichero.open(nombrefichero.c_str(), ios::out);
+			fichero.close();
+			return true;
+	}
+	else
+	{
+			fichero.close();
+	}
+}
+
