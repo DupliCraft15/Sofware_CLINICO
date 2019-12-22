@@ -32,12 +32,16 @@ public:
 		inline	void setApellidos (string apellidos) {apellidos_=apellidos;};
 		inline	void setDireccion (string direccion) {direccion_=direccion;};
 		inline	void setEdad      (int    edad)      {edad_=edad;};
+				void setHistorialCitas(list <Cita> citas_);
+				void setHistorialTratamiento(list <Tratamiento> tratamientos_);
 
 		inline	string   getDNI      		 (){return dni_;};
 		inline	string   getNombre   		 (){return nombre_;};
 		inline	string   getApellidos 		 (){return apellidos_;};
 		inline	string   getDireccion		 (){return direccion_;};
 		inline  int      getEdad			 (){return edad_;};
+		inline list <Cita> getHistorialCitas() const {return historial_citas_;}
+		inline list <Tratamiento> getHistorialTratamiento()const{return historial_tratamiento_;}
 	};
 	void OpcionesPaciente(list <Paciente> &pacientes_);
 	bool AnadirPaciente(list <Paciente> &pacientes_);
