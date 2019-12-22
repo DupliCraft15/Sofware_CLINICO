@@ -27,7 +27,7 @@ void OpcionesCita()
 				cout << "----------------------------------" << endl << endl;
 				cout << "OPCIONES ACERCA DE LAS CITAS______" << endl;
 		        cout << "----------------------------------" << endl << endl;
-		        
+
 		        cout << "\t1 .- Añadir cita" << endl;
 
 		        cout << "\t1 .- Añadir nueva cita" << endl;
@@ -100,6 +100,7 @@ void OpcionesCita()
 int BorrarCita(list <Cita> &citas_)
 {
 	int hora,dia,mes,ano;
+	string motivo;
 	cout << "Introduzca los datos de la cita a borrar: "<< endl;
 	cout << "Hora: "; cin >> hora; cout <<"\t";
 	cout << "Dia: "; cin >> dia; cout <<"\t";
@@ -135,7 +136,7 @@ int BorrarCita(list <Cita> &citas_)
 
 		for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 		{
-			fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear();
+			fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << (*aux).getMotivo();
 		}
 		fichero.close();
 		sleep(2);
