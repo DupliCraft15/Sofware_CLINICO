@@ -11,7 +11,7 @@ using namespace std;
 
 void OpcionesTratamiento();
 
-class Tratamiento : public Paciente
+class Tratamiento:
 {
 private:
 	string nombredeltratamiento_;
@@ -19,16 +19,12 @@ private:
 
 public:
 
-	Tratamiento(string nombredeltratamiento="",string duracion=""):
-	Paciente(dni,nombre,apellidos,edad,direccion)
-	{
-		nombredeltratamiento=nombredeltratamiento_;
-		duracion=duracion_;
-	}
-	inline void setNombredeltratamiento(string nombredeltratamiento) {nombredeltratamiento=nombredeltratamiento_;};
-	inline string getNombredeltratamiento() {return nombredeltratamiento_;};
-	inline void setDuracion(string duracion) {duracion=duracion_;};
+	Tratamiento(string nombredeltratamiento="",string duracion=""):{}
+	inline void setNombredeltratamiento(string nombredeltratamiento) {nombredeltratamiento_=nombredeltratamiento;};
+	inline void setDuracion(string duracion) {duracion_=duracion;};
+
 	inline string getDuracion() {return duracion_;};
+	inline string getNombredeltratamiento() {return nombredeltratamiento_;};
 };
 
 
