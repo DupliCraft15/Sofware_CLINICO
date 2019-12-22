@@ -7,7 +7,7 @@
 #include <string>
 using namespace std;
 
-void OpcionesCita(Citas P)
+void OpcionesCita()
 {
 	bool bandera=false;
 
@@ -25,10 +25,10 @@ void OpcionesCita(Citas P)
 				cin.clear();
 
 				cout << "----------------------------------" << endl << endl;
-				cout << "OPCIONES ACERCA DEL PACIENTE______" << endl;
+				cout << "OPCIONES ACERCA DE LAS CITAS______" << endl;
 		        cout << "----------------------------------" << endl << endl;
 
-		        cout << "\t1 .- Añadir nuevo cita" << endl;
+		        cout << "\t1 .- Añadir cita" << endl;
 
 		        cout << "\t2 .- Mostrar la siguiente cita" << endl;
 
@@ -92,4 +92,49 @@ void OpcionesCita(Citas P)
 				}
 
 		    }while(bandera!=true);
+}
+
+int BorrarCita(list <cita> &pacientes_)
+{
+	string dni;
+	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
+	cout << "DNI: "; cin >> dni; cout <<"\t";
+
+	list<Paciente>:: iterator i;
+
+
+
+	if (pacientes_.empty()==1)
+	{
+		return -1;
+	}
+
+
+
+
+	else
+	{
+		for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
+		{
+
+			if((*i).getDNI() == dni)
+			{
+				pacientes_.erase(i);
+				return 1;
+			}
+		}
+
+		ofstream fichero("PACIENTES.txt");
+		list <Paciente> :: iterator aux;
+
+		for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
+		{
+			fichero << (*aux).getNombre() << "," << (*aux).getApellidos();
+			fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion();
+		}
+		fichero.close();
+		sleep(2);
+
+	}
+
 }
