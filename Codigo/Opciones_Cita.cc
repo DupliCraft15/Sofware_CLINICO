@@ -28,11 +28,10 @@ void OpcionesCita()
 				cout << "OPCIONES ACERCA DE LAS CITAS______" << endl;
 		        cout << "----------------------------------" << endl << endl;
 
-<<<<<<< HEAD
+
 		        cout << "\t1 .- Añadir cita" << endl;
-=======
+
 		        cout << "\t1 .- Añadir nueva cita" << endl;
->>>>>>> d7fd2b4f7dcc3f496e19a449482977414d6a8fbc
 
 		        cout << "\t2 .- Mostrar la siguiente cita" << endl;
 
@@ -99,17 +98,20 @@ void OpcionesCita()
 }
 
 
-int BorrarCita(list <cita> &pacientes_)
+int BorrarCita(list <Cita> &citas_)
 {
-	string dni;
-	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
-	cout << "DNI: "; cin >> dni; cout <<"\t";
+	int hora,dia,mes,ano;
+	cout << "Introduzca los datos de la cita a borrar: "<< endl;
+	cout << "Hora: "; cin >> hora; cout <<"\t";
+	cout << "Dia: "; cin >> dia; cout <<"\t";
+	cout << "Mes: "; cin >> mes; cout <<"\t";
+	cout << "Año: "; cin >> ano; cout <<"\t";
 
 	list<Paciente>:: iterator i;
 
 
 
-	if (pacientes_.empty()==1)
+	if (citas_.empty()==1)
 	{
 		return -1;
 	}
@@ -119,23 +121,22 @@ int BorrarCita(list <cita> &pacientes_)
 
 	else
 	{
-		for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
+		for(i=citas_.begin(); i!=citas_.end(); i++)
 		{
 
-			if((*i).getDNI() == dni)
+			if((*i).getTime()==hora && (*i).getDay()==dia && (*i).getMonth()==mes && (*i).getYear()==ano)
 			{
 				pacientes_.erase(i);
 				return 1;
 			}
 		}
 
-		ofstream fichero("PACIENTES.txt");
-		list <Paciente> :: iterator aux;
+		ofstream fichero("CITAS.txt");
+		list <Cita> :: iterator aux;
 
-		for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
+		for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 		{
-			fichero << (*aux).getNombre() << "," << (*aux).getApellidos();
-			fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion();
+			fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear();
 		}
 		fichero.close();
 		sleep(2);
@@ -147,15 +148,16 @@ int BorrarCita(list <cita> &pacientes_)
 void AnadirCita(list <Cita> &citas_)
 
 {
-	int dia,mes,año;
+	int hora,dia,mes,año;
 	string motivo;
 	cout << "Introduzca los datos de la cita"<< endl;
 	cout <<"\t";
+	cout << "Hora: "; cin >> hora; cout <<"\t";
 	cout << "Día: "; cin >> dia; cout <<"\t";
 	cout << "Mes: "; cin >> mes; cout <<"\t";
 	cout << "Año: "; cin >> año; cout <<"\t";
 	cout << "Motivo de la cita: "; cin >> motivo; cout <<"\t";
-	Cita c(dia,mes,año,motivo);
+	Cita c(hora,dia,mes,año,motivo);
 	list<Cita>:: iterator i;
 	((i*).historial_citas_.push_back(c));
 	citas_.push_back(c);
