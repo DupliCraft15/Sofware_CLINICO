@@ -32,9 +32,7 @@ public:
 		inline	void setApellidos (string apellidos) {apellidos_=apellidos;};
 		inline	void setDireccion (string direccion) {direccion_=direccion;};
 		inline	void setEdad      (int    edad)      {edad_=edad;};
-				void setHistorialCitas(list <Cita> citas_);
-				void setTratamientos(list <Tratamiento> tratamientos_);
-
+		void setHistorialCitas(list <Cita> citas_);
 		inline	string   getDNI      		 (){return dni_;};
 		inline	string   getNombre   		 (){return nombre_;};
 		inline	string   getApellidos 		 (){return apellidos_;};
