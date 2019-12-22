@@ -21,11 +21,11 @@ class Cita
 
 	Cita(int day_=0,month_=0,year_=0, hora_=0, string motivo_=""){}
 
-	inline void setDay(string day) {day_=fecha;};
-	inline void setMonth(string moth) {month_=fecha;};
-	inline void setYear(string year) {year_=fecha;};
+	inline void setDay(string day) {day_=day;};
+	inline void setMonth(string month) {month_=month;};
+	inline void setYear(string year) {year_=year;};
 	inline void setMotivo(string motivo) {motivo_=motivo;};
-	inline void setTime(string hora) {hora_=fecha;}
+	inline void setTime(string hora) {hora_=hora;}
 
 
 	inline int getDay() {return day_;};

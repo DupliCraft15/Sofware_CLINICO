@@ -7,7 +7,7 @@
 #include <string>
 using namespace std;
 
-void OpcionesCita()
+void OpcionesCita(list <Cita> &citas_)
 {
 	bool bandera=false;
 
@@ -32,7 +32,7 @@ void OpcionesCita()
 
 		        cout << "\t1 .- Añadir nueva cita" << endl;
 
-		        cout << "\t2 .- Mostrar la siguiente cita" << endl;
+		        cout << "\t2 .- Mostrar las citas de un dia concreto" << endl;
 
 		        cout << "\t3 .- Modificar una cita" << endl;
 
@@ -50,7 +50,7 @@ void OpcionesCita()
 
 				case '1':
 
-					AnadirCita();
+					AnadirCita(citas_);
 
 				break;
 
@@ -58,23 +58,20 @@ void OpcionesCita()
 
 				case '2':
 
-					BuscarCita();
+					BuscarCita(citas_);
 
 				break;
 
 				case '3':
 
-					ModificarCita();
-
+					ModificarCita(citas_);
 
 				break;
 
 
-
 				case '4':
 
-					BorrarCita();
-
+					BorrarCita(citas_);
 
 				break;
 
@@ -179,14 +176,14 @@ void ModificarCita(list <Cita> &citas_)
 {
 	int dia,mes,ano,hora;
 	string motivo;
-	cout << "Introduzca los datos de la cita"<< endl;
+	cout << "Introduzca los datos de la cita que quiere modificar"<< endl;
 	cout <<"\t";
 	cout << "Día: "; cin >> dia; cout <<"\t";
 	cout << "Mes: "; cin >> mes; cout <<"\t";
 	cout << "Año: "; cin >> ano; cout <<"\t";
 	cout << "Hora: "; cin >> hora; cout <<"\t";
 
-	Cita i(dia,mes,ano,motivo);
+	Cita i(hora,dia,mes,ano);
 	list<Cita>:: iterator i;
 
 	for(i=citas_.begin(); i!=citas_.end(); i++)
@@ -213,8 +210,39 @@ void ModificarCita(list <Cita> &citas_)
 
 	for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 	{
-		fichero << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << "," << (*aux).getTime() << "," << (*aux).getMotivo()<< "\n" << endl;
+		fichero << (*aux).getTime() << "," << (*aux).getMonth() << "," << (*aux).getYear() << "," << (*aux).getDay() << "," << (*aux).getMotivo()<< "\n" << endl;
 	}
 	fichero.close();
 	sleep(3);
+}
+
+void BuscarCita()
+{
+	int dia,mes,ano;
+	string motivo;
+	cout << "Introduzca los datos de la cita que quieras buscar"<< endl;
+	cout <<"\t";
+	cout << "Día: "; cin >> dia; cout <<"\t";
+	cout << "Mes: "; cin >> mes; cout <<"\t";
+	cout << "Año: "; cin >> ano; cout <<"\t";
+
+	Cita i(dia,mes,ano);
+	list<Cita>:: iterator i;
+
+	cout << "Las citas que tiene para este dia es" << endl;
+	int contador = 0;
+
+	for(i=citas_.begin(); i!=citas_.end(); i++)
+	{
+		contador++;
+		if((*i).getDay() == dia && (*i).getMonth() == mes && (*i).getYear() == ano)
+		{
+			cout << "%d . Motivo: %s \n", (*i).getTime() , (*i).getMotivo() <<endl;
+		}
+	}
+
+	if(contador == 0)
+	{
+		cout << "No se a encontrado dicha cita" <<endl;
+	}
 }

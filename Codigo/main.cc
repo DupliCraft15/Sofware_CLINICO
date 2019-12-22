@@ -19,7 +19,7 @@ int main()
 	char tecla;
 
 	list <Paciente> pacientes_;
-	list <Cita> citas_
+	list <Cita> citas_;
 
 
 	do
@@ -67,7 +67,7 @@ int main()
 
 			case '3':
 
-				//OpcionesCita(P);
+				OpcionesCita(citas_);
 
 			break;
 

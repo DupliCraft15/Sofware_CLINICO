@@ -211,6 +211,7 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 					cin>> edad;
 					(*i).setEdad(edad);
 					break;
+					
 					case '4':
 					cout<<"Introduzca la Dirección: ";
 					cin>> variable_a_cambiar;
