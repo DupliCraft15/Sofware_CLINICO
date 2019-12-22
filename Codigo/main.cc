@@ -73,7 +73,7 @@ int main()
 
 			case '4':
 
-				//Calendario();
+				Calendario(citas_);
 
 			break;
 
@@ -99,5 +99,20 @@ int main()
 
 };
 
+void Calendario(citas_)
+{
+	Cita i;
+	list<Cita>:: iterator i;
 
+	cout << "Tus citas son: \t" << endl;
+	int contador = 0;
 
+	for(i=citas_.begin(); i!=citas_.end(); i++)
+	{
+		cout << "El paciente %s tiene como hora %d , dia %d, mes %d, año %d y motivo: %s \n",(*i).getDNI(), (*i).getTime(), (*i).getDay(), (*i).getMonth() , (*i).getMotivo() <<endl;
+	}
+
+	cout << "Ya no hay mas citas programada \n" << endl;
+
+	sleep(3);
+}

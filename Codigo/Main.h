@@ -9,14 +9,6 @@ using namespace std;
 void pausa();
 
 
-
-
-
-
-
-
-
-
 #endif
 
 
