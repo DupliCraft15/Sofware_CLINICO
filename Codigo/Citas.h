@@ -36,12 +36,11 @@ class Cita
 	inline	string getDNI() {return dni_;};
 	};
 
-
-	void MostrarHistorialCitas();
-
-
-
-
+	void OpcionesCita(list <Cita> &citas);
+	bool AnadirCita(list <Cita> &citas);
+	void ModificarCita(list <Cita> &citas);
+	void BuscarCita(list <Cita> &citas);
+	void BorrarCita(list <Cita> &citas);
 
 
 #endif

@@ -47,5 +47,6 @@ public:
 	bool AnadirPaciente(list <Paciente> &pacientes_);
 	void BuscarPaciente(list <Paciente> &pacientes_);
 	void ModificarPaciente(list <Paciente> &pacientes_);
+	void BorrarPaciente(list <Paciente> &pacientes_);
 
 #endif
