@@ -128,7 +128,7 @@ int BorrarCita(list <Cita> &citas_)
 			}
 		}
 
-		ofstream fichero("CITAS.txt");
+		ofstream fichero("citas.txt");
 		list <Cita> :: iterator aux;
 
 		for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
@@ -206,7 +206,7 @@ void ModificarCita(list <Cita> &citas_)
 		}
 	}
 
-	ofstream fichero("Citas.txt");
+	ofstream fichero("citas.txt");
 	list <Cita> :: iterator aux;
 
 	for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)

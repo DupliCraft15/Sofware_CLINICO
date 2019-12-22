@@ -58,7 +58,7 @@ void OpcionesTratamiento()
 
 					case '1':
 
-					//AnadirTratamiento();
+					AnadirTratamiento();
 
 					break;
 
@@ -99,5 +99,41 @@ void OpcionesTratamiento()
 				}
 
 		    }while(bandera!=true);
+
+}
+
+
+
+void AnadirTratamiento(list <Paciente> pacientes_){
+
+
+
+	string nombre_tratamiento,duracion,dni;
+
+	cout << "DNI del paciente a poner tratamiento: "<< endl;
+	cin>>dni;
+	list<Paciente>::iterator i;
+
+	i= find (pacientes_.begin(), pacientes_.end(), dni);
+
+	if (i != pacientes_.end())
+
+	{
+		cout << "Paciente:" << (*i).getNombre()<<" "<< (*i).getApellidos()<< endl;
+		cout <<"-------------------------------"<<endl;
+		cout << "Rellene los siguientes campos: "<< endl;
+		cout <<"\t";
+		cout << "Nombre del tratamiento: "; cin >> nombre_tratamiento; cout <<""<<endl;
+		cout << "Duración del tratamiento: "; cin >> duracion; cout <<""<<endl;
+
+		Tratamiento t(nombre_tratamiento,duracion);
+
+
+		i->tratamientos_.pushback(t);
+	}
+	else
+	{
+		cout << "Paciente no encontrado\n";
+	}
 
 }
