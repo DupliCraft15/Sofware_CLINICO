@@ -27,8 +27,7 @@ void OpcionesCita()
 				cout << "----------------------------------" << endl << endl;
 				cout << "OPCIONES ACERCA DE LAS CITAS______" << endl;
 		        cout << "----------------------------------" << endl << endl;
-
-
+		        
 		        cout << "\t1 .- Añadir cita" << endl;
 
 		        cout << "\t1 .- Añadir nueva cita" << endl;
@@ -155,7 +154,7 @@ void AnadirCita(list <Cita> &citas_)
 	cout << "Hora: "; cin >> hora; cout <<"\t";
 	cout << "Día: "; cin >> dia; cout <<"\t";
 	cout << "Mes: "; cin >> mes; cout <<"\t";
-	cout << "Año: "; cin >> año; cout <<"\t";
+	cout << "Año: "; cin >> ano; cout <<"\t";
 	cout << "Motivo de la cita: "; cin >> motivo; cout <<"\t";
 	Cita c(hora,dia,mes,año,motivo);
 	list<Cita>:: iterator i;
@@ -176,3 +175,46 @@ void AnadirCita(list <Cita> &citas_)
 	}
 }
 
+void ModificarCita(list <Cita> &citas_)
+{
+	int dia,mes,ano,hora;
+	string motivo;
+	cout << "Introduzca los datos de la cita"<< endl;
+	cout <<"\t";
+	cout << "Día: "; cin >> dia; cout <<"\t";
+	cout << "Mes: "; cin >> mes; cout <<"\t";
+	cout << "Año: "; cin >> ano; cout <<"\t";
+	cout << "Hora: "; cin >> hora; cout <<"\t";
+
+	Cita i(dia,mes,ano,motivo);
+	list<Cita>:: iterator i;
+
+	for(i=citas_.begin(); i!=citas_.end(); i++)
+	{
+		if((*i).getDay() == dia && (*i).getMonth() == mes && (*i).getYear() == ano && (*i).getTime() == hora)
+		{
+			cout << "Introduzca los nuevos datos de la cita"<< endl;
+			cout <<"\t";
+			cout << "Día: "; cin >> dia; cout <<"\t";
+			cout << "Mes: "; cin >> mes; cout <<"\t";
+			cout << "Año: "; cin >> ano; cout <<"\t";
+			cout << "Hora: "; cin >> hora; cout <<"\t";
+			cout << "Motivo: "; cin >> motivo; cout <<"\t";
+			(*i).setDay(dia);
+			(*i).setMonth(mes);
+			(*i).setYear(ano);
+			(*i).setMotivo(motivo);
+			(*i).setTime(hora);
+		}
+	}
+
+	ofstream fichero("Citas.txt");
+	list <Cita> :: iterator aux;
+
+	for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
+	{
+		fichero << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << "," << (*aux).getTime() << "," << (*aux).getMotivo()<< "\n" << endl;
+	}
+	fichero.close();
+	sleep(3);
+}

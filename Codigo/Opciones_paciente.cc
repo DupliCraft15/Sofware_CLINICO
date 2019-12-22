@@ -172,10 +172,12 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 	{
+		int prueba = 0;
 
 		if((*i).getDNI() == dni)
 		{
 
+			prueba++;
 			char tecla;
 			int edad;
 			string variable_a_cambiar;
@@ -222,13 +224,13 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 					break;
 				}
 			}
+	}
 
-		else
-
-		{
-			cout << "Paciente no encontrado"<< endl;
-		}
-
+	if(prueba==0)
+	{
+	
+		cout << "Paciente no encontrado"<< endl;
+	
 	}
 
 	ofstream fichero("pacientes.txt");
