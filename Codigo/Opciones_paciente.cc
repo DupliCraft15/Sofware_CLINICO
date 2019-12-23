@@ -327,7 +327,6 @@ void comprobarlista()
 	*/
 
 int BorrarPaciente(list <Paciente> &pacientes_)
-
 {
 	string dni;
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
@@ -359,5 +358,4 @@ int BorrarPaciente(list <Paciente> &pacientes_)
 	}
 	fichero.close();
 	return true;
-
 }
