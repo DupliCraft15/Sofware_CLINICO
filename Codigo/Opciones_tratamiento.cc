@@ -58,30 +58,29 @@ void OpcionesTratamiento()
 
 					case '1':
 
-					AnadirTratamiento();
+						AnadirTratamiento();
 
 					break;
 
 					case '2':
 
-					ConsultarTratamiento();
+						ConsultarTratamiento();
+
 					break;
 
 					case '3':
 
-					ModificarTratamiento();
+						ModificarTratamiento();
 
-
-						break;
-
+					break;
 
 
 					case '4':
 
-					BorrarTratamiento();
+						BorrarTratamiento();
 
 
-						break;
+					break;
 
 					case '5':
 
@@ -157,17 +156,8 @@ void ConsultarTratamiento(list <Paciente> pacientes_){
 		cout <<"-------------------------------"<<endl;
 		cout<< (i->tratamientos_.end().getNombreTratamiento())<<endl;
 		cout<< (i->tratamientos_.end().getDuracion())<<endl;
-
-		Tratamiento t(nombre_tratamiento,duracion);
-
-
-		i->tratamientos_.pushback(t);
 	}
-	else
-	{
-		cout << "Paciente no encontrado\n";
-	}
-
+	else{cout << "Paciente no encontrado\n";}
 }
 
 
@@ -236,6 +226,9 @@ void BorrarTratamiento(list <Paciente> pacientes_){
 
 	i= find (pacientes_.begin(), pacientes_.end(), dni);
 
-	if (i != pacientes_.end()){}
+	if (i != pacientes_.end())
+	{
+		i->tratamientos_.popback();
+	}
 	else{cout << "Paciente no encontrado\n";}
 }
