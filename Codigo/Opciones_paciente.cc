@@ -142,8 +142,7 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 	list <Paciente> :: iterator aux;
 	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
 	{
-		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() 
-		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << ",";
+		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
 	}
 	fichero.close();
 	return true;
@@ -164,7 +163,7 @@ void BuscarPaciente(list <Paciente> &pacientes_)
     for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
          if(i->getDNI() == dni){
          	encontrado  = true;
-             break;
+            break;
          }
     }
 
@@ -262,75 +261,21 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
 	{
-		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() 
-		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << ",";
+		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos();
+		fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
 	}
 	fichero.close();
 	sleep(3);
 
 }
 
-/* No sabemos lo que hace pero da error al compilar
-void comprobarlista()
-{
-	ifstream fe("pacientes.txt");
-	string aux;
-	while(getline(fe, aux)==true)
-	{
-		if(fe!=p)
-		{
-			return true;
-		}
 
-	}
-	return false;
-}
-*/
-
-/*int BorrarPaciente(list <Paciente> &pacientes_)
-{
-	string dni;
-	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
-	cout << "DNI: "; cin >> dni; cout <<"\t";
-
-	list<Paciente>:: iterator i;
-
-
-
-	if (pacientes_.empty()!=1)
-	{
-		for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
-		{
-
-			if(i->getDNI() == dni)
-			{
-				pacientes_.erase(i);
-			}
-		}
-		ofstream fichero("pacientes.txt");
-		list <Paciente> :: iterator aux;
-
-		for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
-		{
-			fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() 
-		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << ",";
-		}
-		fichero.close();
-		sleep(2);
-	}
-
-
-	else
-	{
-		cout<<"Fichero vacío"<<endl;
-	}
-	*/
 
 int BorrarPaciente(list <Paciente> &pacientes_)
 
 {
 	string dni;
-	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
+	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
 
 	list<Paciente>:: iterator i;
@@ -345,6 +290,9 @@ int BorrarPaciente(list <Paciente> &pacientes_)
 	if (encontrado)
 	{
 	   pacientes_.erase(i);
+	   cout<<"Paciente borrado"<<endl;
+	   cin.ignore();
+	   cin.get();
 	}
 	else {
 		cout << "Paciente no encontrado\n";
@@ -354,8 +302,8 @@ int BorrarPaciente(list <Paciente> &pacientes_)
 	list <Paciente> :: iterator aux;
 	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
 	{
-		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() 
-		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << ",";
+		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos(); 
+		fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
 	}
 	fichero.close();
 	return true;
