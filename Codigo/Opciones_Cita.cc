@@ -24,11 +24,9 @@ void OpcionesCita(list <Cita> &citas_)
 				system("clear");
 				cin.clear();
 
-				cout << "----------------------------------" << endl << endl;
-				cout << "OPCIONES ACERCA DE LAS CITAS______" << endl;
+				cout << "----------------------------------" << endl;
+				cout << "   OPCIONES ACERCA DE LAS CITAS   " << endl;
 		        cout << "----------------------------------" << endl << endl;
-
-		        cout << "\t1 .- Añadir cita" << endl;
 
 		        cout << "\t1 .- Añadir nueva cita" << endl;
 
@@ -127,12 +125,12 @@ int BorrarCita(list <Cita> &citas_)
 
 			if((*i).getTime()==hora && (*i).getDay()==dia && (*i).getMonth()==mes && (*i).getYear()==ano)
 			{
-				pacientes_.erase(i);
+				citas_.erase(i);
 				return 1;
 			}
 		}
 
-		ofstream fichero("citas.txt");
+		ofstream fichero("Citas.txt");
 		list <Cita> :: iterator aux;
 
 		for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
@@ -140,7 +138,6 @@ int BorrarCita(list <Cita> &citas_)
 			fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << (*aux).getMotivo();
 		}
 		fichero.close();
-		sleep(2);
 
 	}
 
@@ -162,22 +159,16 @@ void AnadirCita(list <Cita> &citas_)
 	cout << "Año: "; cin >> ano; cout <<"\t";
 	cout << "Motivo de la cita: "; cin >> motivo; cout <<"\t";
 	Cita c(dni,hora,dia,mes,ano,motivo);
-	list<Cita>:: iterator i;
-	((i*).historial_citas_.push_back(c));
 	citas_.push_back(c);
-	string nombrefichero="citas.txt";
 
-	fstream fichero(nombrefichero.c_str(), ios::in);
-	if(!fichero)
+	ofstream fichero("Citas.txt");
+	list<Cita>::iterator aux;
+
+	for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 	{
-			fichero.open(nombrefichero.c_str(), ios::out);
-			fichero.close();
-			return true;
+		fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << (*aux).getMotivo();
 	}
-	else
-	{
-			fichero.close();
-	}
+	fichero.close();
 }
 
 void ModificarCita(list <Cita> &citas_)
@@ -191,7 +182,7 @@ void ModificarCita(list <Cita> &citas_)
 	cout << "Año: "; cin >> ano; cout <<"\t";
 	cout << "Hora: "; cin >> hora; cout <<"\t";
 
-	Cita d(hora,dia,mes,ano);
+	Cita d("", hora,dia,mes,ano, "");
 
 	for(auto i=citas_.begin(); i!=citas_.end(); i++)
 	{
@@ -216,13 +207,13 @@ void ModificarCita(list <Cita> &citas_)
 
 	for(auto aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 	{
-		fichero << (*aux).getDNI()<< "," << (*aux).getTime() << "," << (*aux).getMonth() << "," << (*aux).getYear() << "," << (*aux).getDay() << "," << (*aux).getMotivo()<< "\n" << endl;
+		fichero << (*aux).getDNI() << "," << (*aux).getTime() << "," << (*aux).getMonth() << "," << (*aux).getYear() << "," << (*aux).getDay() << "," << (*aux).getMotivo() << endl;
 	}
 	fichero.close();
 	sleep(3);
 }
 
-void BuscarCita()
+void BuscarCita(list<Cita> &citas_)
 {
 	int dia,mes,ano;
 	string motivo;
@@ -241,7 +232,7 @@ void BuscarCita()
 		contador++;
 		if((*i).getDay() == dia && (*i).getMonth() == mes && (*i).getYear() == ano)
 		{
-			cout << "El paciente %s tiene como hora %d y Motivo: %s \n",(*i).getDNI(), (*i).getTime() , (*i).getMotivo() <<endl;
+			cout << (*i).getDNI() << "," << (*i).getTime() << "," << (*i).getMonth() << "," << (*i).getYear() << "," << (*i).getDay() << "," << (*i).getMotivo() << endl;
 		}
 	}
 

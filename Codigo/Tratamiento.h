@@ -5,8 +5,6 @@
 #include <fstream>
 #include <string>
 #include <list>
-#include "Main.h"
-#include "Paciente.h"
 using namespace std;
 
 void OpcionesTratamiento();
@@ -26,7 +24,6 @@ public:
 	inline string getDuracion() {return duracion_;};
 	inline string getNombreTratamiento() {return nombreTratamiento_;};
 };
-
 
 
 

@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-void OpcionesTratamiento()
+void OpcionesTratamiento(list <Paciente> &pacientes_)
 {
 
 
@@ -28,11 +28,9 @@ void OpcionesTratamiento()
 		    system("clear");
 
 		        cin.clear();
-		        cout << "----------------------------------" << endl << endl;
-
-		        cout << "OPCIONES ACERCA DEL TRATAMIENTO______" << endl;
-
-		        cout << "----------------------------------" << endl << endl;
+		        cout << "-----------------------------------" << endl;
+		        cout << "  OPCIONES ACERCA DEL TRATAMIENTO  " << endl;
+		        cout << "-----------------------------------" << endl << endl;
 
 		        cout << "\t1 .- Añadir tratamiento" << endl;
 
@@ -59,26 +57,26 @@ void OpcionesTratamiento()
 
 					case '1':
 
-						AnadirTratamiento();
+						AnadirTratamiento(pacientes_);
 
 					break;
 
 					case '2':
 
-						ConsultarTratamiento();
+						ConsultarTratamiento(pacientes_);
 
 					break;
 
 					case '3':
 
-						ModificarTratamiento();
+						ModificarTratamiento(pacientes_);
 
 					break;
 
 
 					case '4':
 
-						BorrarTratamiento();
+						BorrarTratamiento(pacientes_);
 
 
 					break;
@@ -104,7 +102,7 @@ void OpcionesTratamiento()
 
 
 
-void AnadirTratamiento(list <Paciente> pacientes_){
+void AnadirTratamiento(list <Paciente> &pacientes_){
 
 
 
@@ -112,9 +110,13 @@ void AnadirTratamiento(list <Paciente> pacientes_){
 
 	cout << "DNI del paciente a poner tratamiento: "<< endl;
 	cin>>dni;
-	list<Paciente>::iterator i;
 
-	i= find (pacientes_.begin(), pacientes_.end(), dni);
+	list<Paciente>:: iterator i;
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
+         if(i->getDNI() == dni){
+             break;
+         }
+    }
 
 	if (i != pacientes_.end())
 
@@ -129,7 +131,7 @@ void AnadirTratamiento(list <Paciente> pacientes_){
 		Tratamiento t(nombre_tratamiento,duracion);
 
 
-		i->tratamientos_.pushback(t);
+		i->tratamientos_.push_back(t);
 	}
 	else
 	{
@@ -146,17 +148,21 @@ void ConsultarTratamiento(list <Paciente> pacientes_){
 
 	cout << "DNI del paciente a poner tratamiento: "<< endl;
 	cin>>dni;
-	list<Paciente>::iterator i;
-
-	i= find (pacientes_.begin(), pacientes_.end(), dni);
+	
+	list<Paciente>:: iterator i;
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
+         if(i->getDNI() == dni){
+             break;
+         }
+    }
 
 	if (i != pacientes_.end())
 
 	{
 		cout << "Paciente:" << (*i).getNombre()<<" "<< (*i).getApellidos()<< endl;
 		cout <<"-------------------------------"<<endl;
-		cout<< (i->tratamientos_.end().getNombreTratamiento())<<endl;
-		cout<< (i->tratamientos_.end().getDuracion())<<endl;
+		cout<< (i->tratamientos_.end()->getNombreTratamiento())<<endl;
+		cout<< (i->tratamientos_.end()->getDuracion())<<endl;
 	}
 	else{cout << "Paciente no encontrado\n";}
 }
@@ -171,10 +177,11 @@ void ModificarTratamiento(list <Paciente> &pacientes_)
 
 	list<Paciente>:: iterator i;
 
+	int prueba = 0;
 
 	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 	{
-		int prueba = 0;
+		prueba = 0;
 
 		if((*i).getDNI() == dni)
 		{
@@ -192,14 +199,14 @@ void ModificarTratamiento(list <Paciente> &pacientes_)
 					case '1':
 					cout<<"Introduzca el Nombre del tratamiento: ";
 					cin>> variable_a_cambiar;
-					i->tratamientos_.end().setNombreTratamiento(variable_a_cambiar);
+					i->tratamientos_.end()->setNombreTratamiento(variable_a_cambiar);
 
 					break;
 
 					case '2':
 					cout<<"Introduzca la duración: ";
 					cin>> variable_a_cambiar;
-					i->tratamientos_.end().setDuracion(variable_a_cambiar);
+					i->tratamientos_.end()->setDuracion(variable_a_cambiar);
 
 					break;
 
@@ -217,19 +224,22 @@ void ModificarTratamiento(list <Paciente> &pacientes_)
 		cout << "Paciente no encontrado"<< endl;
 	}
 }
-void BorrarTratamiento(list <Paciente> pacientes_){
+void BorrarTratamiento(list <Paciente> &pacientes_){
 	string nombre_tratamiento,duracion,dni;
 	cout << "DNI del paciente a poner tratamiento: "<< endl;
 	cin>>dni;
-	list<Paciente>::iterator i;
 	list<Tratamiento>::iterator aux;
 
-
-	i= find (pacientes_.begin(), pacientes_.end(), dni);
+	list<Paciente>:: iterator i;
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
+         if(i->getDNI() == dni){
+             break;
+         }
+    }
 
 	if (i != pacientes_.end())
 	{
-		i->tratamientos_.popback();
+		i->tratamientos_.pop_back();
 	}
 	else{cout << "Paciente no encontrado\n";}
 }

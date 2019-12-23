@@ -20,8 +20,8 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 			{
 				system("clear");
 				cin.clear();
-				cout << "----------------------------------" << endl << endl;
-				cout << "OPCIONES ACERCA DEL PACIENTE______" << endl;
+				cout << "----------------------------------" << endl;
+				cout << "   OPCIONES ACERCA DEL PACIENTE   " << endl;
 		        cout << "----------------------------------" << endl << endl;
 
 		        cout << "\t1 .- Añadir nuevo paciente" << endl;
@@ -113,13 +113,16 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 	Paciente p(dni,nombre,apellidos,edad,direccion);
 
 	list<Paciente>:: iterator i;
-
-	i= find (pacientes_.begin(), pacientes_.end(), p.getDNI());
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
+         if(i->getDNI() == p.getDNI()){
+             break;
+         }
+    }
 
 	if (i != pacientes_.end())
 
 	{
-		pacientes_.pushback(p);
+		pacientes_.push_back(p);
 
 		ofstream fichero("pacientes.txt");
 
@@ -127,8 +130,8 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 
 		for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
 		{
-			fichero << (*aux).getNombre() << "," << (*aux).getApellidos();
-			fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion();
+			fichero << (*aux).getNombre() << "," << (*aux).getApellidos() 
+			        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
 		}
 		fichero.close();
 		return true;
@@ -149,9 +152,13 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 	string dni;
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
-	list<Paciente>:: iterator i;
 
-	i= find (pacientes_.begin(), pacientes_.end(), dni);
+	list<Paciente>:: iterator i;
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
+         if(i->getDNI() == dni){
+             break;
+         }
+    }
 
 	if (i != pacientes_.end())
 
@@ -176,10 +183,11 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 	list<Paciente>:: iterator i;
 
+	int prueba = 0;
 
 	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 	{
-		int prueba = 0;
+		prueba = 0;
 
 		if((*i).getDNI() == dni)
 		{
@@ -254,12 +262,14 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 }
 
+/* No sabemos lo que hace pero da error al compilar
 void comprobarlista()
 {
 	ifstream fe("pacientes.txt");
-	while(getline(fe)==true)
+	string aux;
+	while(getline(fe, aux)==true)
 	{
-		if(fe=!p)
+		if(fe!=p)
 		{
 			return true;
 		}
@@ -267,6 +277,7 @@ void comprobarlista()
 	}
 	return false;
 }
+*/
 
 int BorrarPaciente(list <Paciente> &pacientes_)
 {

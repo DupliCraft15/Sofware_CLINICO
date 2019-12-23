@@ -5,8 +5,6 @@
 #include <fstream>
 #include <string>
 #include <list>
-#include "Main.h"
-#include "Citas.h"
 #include "Tratamiento.h"
 using namespace std;
 
@@ -16,13 +14,9 @@ class Paciente
 private:
 	string dni_,nombre_,apellidos_,direccion_;
 	int edad_;
-	list <Paciente> paciente_;
 
 public:
-
-
-	list <Cita> historial_citas_;
-	list <Tratamiento> historial_tratamiento_;
+	list<Tratamiento> tratamientos_;
 
 	Paciente(string dni_="",string nombre_="",string apellidos_="",int edad_=0,string direccion_=""){}
 
@@ -32,19 +26,11 @@ public:
 		inline	void setApellidos (string apellidos) {apellidos_=apellidos;};
 		inline	void setDireccion (string direccion) {direccion_=direccion;};
 		inline	void setEdad      (int    edad)      {edad_=edad;};
-		void setHistorialCitas(list <Cita> citas_);
-		inline	string   getDNI      		 (){return dni_;};
-		inline	string   getNombre   		 (){return nombre_;};
-		inline	string   getApellidos 		 (){return apellidos_;};
-		inline	string   getDireccion		 (){return direccion_;};
-		inline  int      getEdad			 (){return edad_;};
-		inline list <Cita> getHistorialCitas() const {return historial_citas_;}
-		inline list <Tratamiento> getTratamientos()const{return historial_tratamiento_;}
-	};
-	void OpcionesPaciente(list <Paciente> &pacientes_);
-	bool AnadirPaciente(list <Paciente> &pacientes_);
-	void BuscarPaciente(list <Paciente> &pacientes_);
-	void ModificarPaciente(list <Paciente> &pacientes_);
-	void BorrarPaciente(list <Paciente> &pacientes_);
+		inline	string   getDNI      		 () const {return dni_;};
+		inline	string   getNombre   		 () const {return nombre_;};
+		inline	string   getApellidos 		 () const {return apellidos_;};
+		inline	string   getDireccion		 () const {return direccion_;};
+		inline  int      getEdad			 () const {return edad_;};
+};
 
 #endif

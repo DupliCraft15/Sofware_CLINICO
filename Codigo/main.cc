@@ -1,5 +1,5 @@
-#include "Paciente.h"
 #include "Tratamiento.h"
+#include "Paciente.h"
 #include "Citas.h"
 #include "Main.h"
 #include <cstdlib>
@@ -38,14 +38,16 @@ int main()
 	list <Paciente> pacientes_;
 	list <Cita> citas_;
 
+	//Inicializar las listas
+	//Llamar a funciones que lean los ficheros
+
 
 	do
 
     {
         cin.clear();
-
-        cout << "Clinica ______" << endl;
-
+        cout << "----------------------------------" << endl;
+        cout << "             CLINICA              " << endl;
         cout << "----------------------------------" << endl << endl;
 
         cout << "\t1 .- Opciones acerca del paciente" << endl;
