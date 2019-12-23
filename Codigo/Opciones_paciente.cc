@@ -11,8 +11,8 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 	bool bandera=false;
 
-	ifstream fe("Pacientes.txt");
-    if (!fe){ofstream ofs("Pacientes.txt");}
+	ifstream fe("pacientes.txt");
+    if (!fe){ofstream ofs("pacientes.txt");}
 
 	char tecla;
 
@@ -49,6 +49,9 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 						else{
 							cout<< "El paciente introducido ya existente"<<endl;
 						}
+
+                        cin.ignore();
+                        cin.get();
 
 						break;
 
@@ -107,13 +110,14 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 	cout << "Nombre: "; cin >> nombre; cout <<"\t";
 	cout << "Apellidos: "; cin >> apellidos; cout <<"\t";
 	cout << "Edad: "; cin >> edad; cout <<"\t";
-	cout << "Direcccion: "; cin >> direccion; cout <<"\t";
+	cout << "Direccion: "; cin >> direccion; cout <<"\t";
 
 	Paciente p(dni,nombre,apellidos,edad,direccion);
 
     //Buscamos el paciente
-	list<Paciente>:: iterator i;
+    list<Paciente>:: iterator i;
 	bool encontrado = false;
+	
     for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
          if(i->getDNI() == p.getDNI()){
          	 encontrado  = true;
@@ -138,8 +142,8 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 	list <Paciente> :: iterator aux;
 	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
 	{
-		fichero << (*aux).getNombre() << "," << (*aux).getApellidos() 
-		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
+		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() 
+		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << ",";
 	}
 	fichero.close();
 	return true;
@@ -258,8 +262,8 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
 	{
-		fichero << (*aux).getNombre() << "," << (*aux).getApellidos();
-		fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion();
+		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() 
+		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << ",";
 	}
 	fichero.close();
 	sleep(3);
@@ -310,8 +314,8 @@ int BorrarPaciente(list <Paciente> &pacientes_)
 
 		for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
 		{
-			fichero << (*aux).getNombre() << "," << (*aux).getApellidos();
-			fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion();
+			fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() 
+		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << ",";
 		}
 		fichero.close();
 		sleep(2);

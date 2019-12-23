@@ -26,14 +26,17 @@ list <Paciente> leerFicheroPacientes (string ruta) {
 			p.setApellidos(aux);
 			getline(f,aux,',');
 			p.setEdad(stoi(aux));
-			getline(f,aux);
+			getline(f,aux, ',');
 			p.setDireccion(aux);
 
+			pacientes.push_back(p);
 		}
 	}
 	else {
 		cout << "ERROR: No se pudo abrir el archivo " << ruta << endl;
 	}
+
+	return pacientes;
 }
 
 void Calendario(list <Cita> &citas_)
@@ -60,7 +63,7 @@ int main()
 
 	char tecla;
 
-	list <Paciente> pacientes_=leerFicheroPacientes("pacientes.txt");
+	list <Paciente> pacientes_  = leerFicheroPacientes("pacientes.txt");
 	list <Cita> citas_;
 
 	//Inicializar las listas

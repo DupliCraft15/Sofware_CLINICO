@@ -18,7 +18,16 @@ class Cita
 
 	public:
 
-	Cita(string dni_= "", int hora_=0,int day_=0,int month_=0,int year_=0, string motivo_=""){}
+	Cita(string dni= "", int hora=0,int day=0,int month=0,int year=0, string motivo=""){
+        dni_=dni;
+        hora_=hora;
+        day_=day;
+        month_=month;
+        year_=year;
+        motivo_=motivo;
+	}
+
+
 
 	inline void setDay(int day) {day_=day;};
 	inline void setMonth(int month) {month_=month;};

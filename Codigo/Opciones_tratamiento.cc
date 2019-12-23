@@ -15,10 +15,10 @@ void OpcionesTratamiento(list <Paciente> &pacientes_)
 
 			char tecla;
 
-			ifstream fe("Tratamiento.txt");
+			ifstream fe("tratamiento.txt");
 		    if (!fe)
 		    {
-		    	ofstream ofs("Tratamiento.txt");
+		    	ofstream ofs("tratamiento.txt");
 		    }
 
 			do

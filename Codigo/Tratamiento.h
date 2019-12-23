@@ -17,7 +17,10 @@ private:
 
 public:
 
-	Tratamiento(string nombreTratamiento="",string duracion=""){}
+	Tratamiento(string nombreTratamiento="",string duracion=""){
+        nombreTratamiento_=nombreTratamiento;
+        duracion_=duracion;
+	}
 	inline void setNombreTratamiento(string nombreTratamiento) {nombreTratamiento_=nombreTratamiento;};
 	inline void setDuracion(string duracion) {duracion_=duracion;};
 

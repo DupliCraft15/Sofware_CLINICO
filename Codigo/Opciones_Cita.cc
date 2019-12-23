@@ -11,10 +11,10 @@ void OpcionesCita(list <Cita> &citas_)
 {
 	bool bandera=false;
 
-	ifstream fe("Citas.txt");
+	ifstream fe("citas.txt");
 	if (!fe)
 	{
-		ofstream ofs("Citas.txt");
+		ofstream ofs("citas.txt");
 	}
 
 	char tecla;

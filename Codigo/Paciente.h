@@ -18,7 +18,13 @@ private:
 public:
 	list<Tratamiento> tratamientos_;
 
-	Paciente(string dni_="",string nombre_="",string apellidos_="",int edad_=0,string direccion_=""){}
+	Paciente(string dni="",string nombre="",string apellidos="",int edad=0,string direccion=""){
+		dni_ = dni;
+		nombre_  = nombre;
+		apellidos_ = apellidos;
+		edad_ = edad;
+		direccion_ = direccion;
+	}
 
 
 		inline	void setDNI       (string dni)       {dni_=dni;};
