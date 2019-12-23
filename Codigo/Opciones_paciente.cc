@@ -104,7 +104,7 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 	string dni,nombre,apellidos,direccion;
 	int edad;
 
-	cout << "A continuación introduzca los datos del paciente a añadir: (ATENCIÓN el DNI del paciente no se podrá modificar en caso de introducirlo incorrectamente)"<< endl;
+	cout << "A continuación introduzca los datos del paciente a añadir sin espacios)"<< endl;
 	cout <<"\t";
 	cout << "DNI: "; cin >> dni; cout <<"\t";
 	cout << "Nombre: "; cin >> nombre; cout <<"\t";
@@ -181,7 +181,7 @@ void BuscarPaciente(list <Paciente> &pacientes_)
     }
 
 }
-
+//Revisar
 void ModificarPaciente(list <Paciente> &pacientes_)
 {
 
@@ -197,7 +197,7 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 	{
 		prueba = 0;
 
-		if((*i).getDNI() == dni)
+		if(i->getDNI() == dni)
 		{
 
 			prueba++;
@@ -287,7 +287,7 @@ void comprobarlista()
 }
 */
 
-int BorrarPaciente(list <Paciente> &pacientes_)
+/*int BorrarPaciente(list <Paciente> &pacientes_)
 {
 	string dni;
 	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
@@ -298,17 +298,15 @@ int BorrarPaciente(list <Paciente> &pacientes_)
 
 
 	if (pacientes_.empty()!=1)
-
 	{
 		for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 		{
 
-			if((*i).getDNI() == dni)
+			if(i->getDNI() == dni)
 			{
 				pacientes_.erase(i);
-				}
 			}
-
+		}
 		ofstream fichero("pacientes.txt");
 		list <Paciente> :: iterator aux;
 
@@ -319,13 +317,47 @@ int BorrarPaciente(list <Paciente> &pacientes_)
 		}
 		fichero.close();
 		sleep(2);
-
-
 	}
 
 
-	else{
+	else
+	{
 		cout<<"Fichero vacío"<<endl;
 	}
+	*/
+
+int BorrarPaciente(list <Paciente> &pacientes_)
+
+{
+	string dni;
+	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
+	cout << "DNI: "; cin >> dni; cout <<"\t";
+
+	list<Paciente>:: iterator i;
+	bool encontrado = false;
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
+         if(i->getDNI() == dni){
+         	encontrado  = true;
+            break;
+         }
+    }
+
+	if (encontrado)
+	{
+	   pacientes_.erase(i);
+	}
+	else {
+		cout << "Paciente no encontrado\n";
+    }
+    ofstream fichero("pacientes.txt");
+
+	list <Paciente> :: iterator aux;
+	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
+	{
+		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() 
+		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << ",";
+	}
+	fichero.close();
+	return true;
 
 }
