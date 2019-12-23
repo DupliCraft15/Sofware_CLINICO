@@ -201,7 +201,7 @@ void ModificarCita(list <Cita> &citas_)
 		}
 	}
 
-	ofstream fichero("citas.txt");
+	ofstream fichero("Citas.txt");
 
 	for(auto aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 	{
@@ -238,4 +238,6 @@ void BuscarCita(list<Cita> &citas_)
 	{
 		cout << "No se a encontrado dicha cita" <<endl;
 	}
+
+	sleep(5);
 }

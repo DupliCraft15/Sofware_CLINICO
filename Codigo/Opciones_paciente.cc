@@ -272,7 +272,6 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 
 int BorrarPaciente(list <Paciente> &pacientes_)
-
 {
 	string dni;
 	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
@@ -307,5 +306,4 @@ int BorrarPaciente(list <Paciente> &pacientes_)
 	}
 	fichero.close();
 	return true;
-
 }
