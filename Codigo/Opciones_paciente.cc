@@ -195,7 +195,6 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
 	{
-		prueba = 0;
 
 		if(i->getDNI() == dni)
 		{
