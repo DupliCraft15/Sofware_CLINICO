@@ -11,6 +11,31 @@ using namespace std;
 
 void pausa();
 
+list <Paciente> leerFicheroPacientes (string ruta) {
+	ifstream f(ruta);
+	list<Paciente> pacientes;
+	string aux;
+	if  (f) {
+		while(!f.eof()){
+			Paciente p;
+			getline(f,aux,',');
+			p.setDNI(aux);
+			getline(f,aux,',');
+			p.setNombre(aux);
+			getline(f,aux,',');
+			p.setApellidos(aux);
+			getline(f,aux,',');
+			p.setEdad(stoi(aux));
+			getline(f,aux);
+			p.setDireccion(aux);
+
+		}
+	}
+	else {
+		cout << "ERROR: No se pudo abrir el archivo " << ruta << endl;
+	}
+}
+
 void Calendario(list <Cita> &citas_)
 {
 
@@ -35,7 +60,7 @@ int main()
 
 	char tecla;
 
-	list <Paciente> pacientes_;
+	list <Paciente> pacientes_=leerFicheroPacientes("pacientes.txt");
 	list <Cita> citas_;
 
 	//Inicializar las listas
@@ -107,7 +132,7 @@ int main()
 			default:
 
 				cout << "Opcion no valida" << endl;
-				
+
 				break;
 
 		}
