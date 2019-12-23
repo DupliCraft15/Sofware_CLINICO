@@ -43,8 +43,6 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 			{
 
 				case '1':
-						AnadirPaciente(pacientes_);
-
 						if(AnadirPaciente(pacientes_)==true){
 							cout<<"Paciente guardado con exito"<<endl;
 						}
@@ -59,6 +57,9 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 				case '2':
 
 					BuscarPaciente(pacientes_);
+
+					cin.ignore();
+					cin.get();
 
 				break;
 
@@ -85,9 +86,7 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 				default:
 
-						cout << "Opcion no valida.(Espere 3 segundos hasta que se cierre la ventana)\a\n";
-
-						sleep(3);
+						cout << "Opcion no valida" << endl;
 
 				break;
 
@@ -98,7 +97,7 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 bool AnadirPaciente(list <Paciente> &pacientes_)
 {
-
+    //Creamos un paciente
 	string dni,nombre,apellidos,direccion;
 	int edad;
 
@@ -112,65 +111,70 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 
 	Paciente p(dni,nombre,apellidos,edad,direccion);
 
+    //Buscamos el paciente
 	list<Paciente>:: iterator i;
+	bool encontrado = false;
     for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
          if(i->getDNI() == p.getDNI()){
+         	 encontrado  = true;
              break;
          }
     }
 
-	if (i != pacientes_.end())
-
+	if (encontrado)
 	{
-		pacientes_.push_back(p);
-
-		ofstream fichero("pacientes.txt");
-
-		list <Paciente> :: iterator aux;
-
-		for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
-		{
-			fichero << (*aux).getNombre() << "," << (*aux).getApellidos() 
-			        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
-		}
-		fichero.close();
-		return true;
-
-
+		//Si existe lo reemplazamos
+		*i = p;
 	}
 	else
 	{
-		cout << "Paciente no encontrado\n";
-		return false;
+		//Si no, lo añadimos
+		pacientes_.push_back(p);
 	}
+
+    //Actualizamos el archivo
+	ofstream fichero("pacientes.txt");
+
+	list <Paciente> :: iterator aux;
+	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
+	{
+		fichero << (*aux).getNombre() << "," << (*aux).getApellidos() 
+		        << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
+	}
+	fichero.close();
+	return true;
+
 }
 
 
 void BuscarPaciente(list <Paciente> &pacientes_)
 
 {
+	cout << pacientes_.size() << endl;
 	string dni;
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
 
 	list<Paciente>:: iterator i;
+	bool encontrado = false;
     for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
          if(i->getDNI() == dni){
+         	encontrado  = true;
              break;
          }
     }
 
-	if (i != pacientes_.end())
-
+	if (encontrado)
 	{
-	cout<<i->getDNI()<<endl;
-	cout<<i->getNombre()<<endl;
-	cout<<i->getApellidos()<<endl;
-	cout<<i->getEdad()<<endl;
-	cout<<i->getDireccion()<<endl;
+	    cout<<i->getDNI()<<endl;
+	    cout<<i->getNombre()<<endl;
+	    cout<<i->getApellidos()<<endl;
+	    cout<<i->getEdad()<<endl;
+	    cout<<i->getDireccion()<<endl;
 	}
-	else{cout << "Paciente no encontrado\n";}
-	sleep(2);
+	else {
+		cout << "Paciente no encontrado\n";
+    }
 
 }
 

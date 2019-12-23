@@ -106,9 +106,8 @@ int main()
 
 			default:
 
-				cout << "Opcion no valida.(Espere 3 segundos hasta que se cierre la ventana)\a\n";
-
-				sleep(3);
+				cout << "Opcion no valida" << endl;
+				
 				break;
 
 		}
