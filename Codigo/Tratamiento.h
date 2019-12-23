@@ -11,7 +11,7 @@ using namespace std;
 
 void OpcionesTratamiento();
 
-class Tratamiento:
+class Tratamiento
 {
 private:
 	string nombreTratamiento_;
@@ -19,7 +19,7 @@ private:
 
 public:
 
-	Tratamiento(string nombreTratamiento="",string duracion=""):{}
+	Tratamiento(string nombreTratamiento="",string duracion=""){}
 	inline void setNombreTratamiento(string nombreTratamiento) {nombreTratamiento_=nombreTratamiento;};
 	inline void setDuracion(string duracion) {duracion_=duracion;};
 
