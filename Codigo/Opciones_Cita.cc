@@ -133,7 +133,7 @@ int BorrarCita(list <Cita> &citas_)
 
 		for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 		{
-			fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << (*aux).getMotivo();
+			fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << (*aux).getMotivo() << endl;
 		}
 		fichero.close();
 
@@ -159,12 +159,12 @@ void AnadirCita(list <Cita> &citas_)
 	Cita c(dni,hora,dia,mes,ano,motivo);
 	citas_.push_back(c);
 
-	ofstream fichero("Citas.txt");
+	ofstream fichero("citas.txt");
 	list<Cita>::iterator aux;
 
 	for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 	{
-		fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << (*aux).getMotivo();
+		fichero << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << (*aux).getMotivo() << endl;
 	}
 	fichero.close();
 }
@@ -173,12 +173,11 @@ void ModificarCita(list <Cita> &citas_)
 {
 	int dia,mes,ano,hora;
 	string motivo;
-	cout << "Introduzca los datos de la cita que quiere modificar"<< endl;
-	cout <<"\t";
+	cout << "Introduzca los datos de la cita que quiere modificar"<< endl; cout <<"\t";
+	cout << "Hora: "; cin >> hora; cout <<"\t";
 	cout << "Día: "; cin >> dia; cout <<"\t";
 	cout << "Mes: "; cin >> mes; cout <<"\t";
 	cout << "Año: "; cin >> ano; cout <<"\t";
-	cout << "Hora: "; cin >> hora; cout <<"\t";
 
 	Cita d("", hora,dia,mes,ano, "");
 
@@ -188,10 +187,10 @@ void ModificarCita(list <Cita> &citas_)
 		{
 			cout << "Introduzca los nuevos datos de la cita"<< endl;
 			cout <<"\t";
+			cout << "Hora: "; cin >> hora; cout <<"\t";
 			cout << "Día: "; cin >> dia; cout <<"\t";
 			cout << "Mes: "; cin >> mes; cout <<"\t";
 			cout << "Año: "; cin >> ano; cout <<"\t";
-			cout << "Hora: "; cin >> hora; cout <<"\t";
 			cout << "Motivo: "; cin >> motivo; cout <<"\t";
 			(*i).setDay(dia);
 			(*i).setMonth(mes);
@@ -201,7 +200,7 @@ void ModificarCita(list <Cita> &citas_)
 		}
 	}
 
-	ofstream fichero("Citas.txt");
+	ofstream fichero("citas.txt");
 
 	for(auto aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 	{

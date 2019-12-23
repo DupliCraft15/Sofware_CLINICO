@@ -39,6 +39,34 @@ list <Paciente> leerFicheroPacientes (string ruta) {
 	return pacientes;
 }
 
+list <Cita> leerFicheroCitas (string ruta) {
+	ifstream f(ruta);
+	list<Cita> citas;
+	string aux;
+	if  (f) {
+		while(!f.eof()){
+			Cita c;
+			getline(f,aux,',');
+			c.setTime(stoi(aux));
+			getline(f,aux,',');
+			c.setDay(stoi(aux));
+			getline(f,aux,',');
+			c.setMonth(stoi(aux));
+			getline(f,aux,',');
+			c.setYear(stoi(aux));
+			getline(f,aux, ',');
+			c.setMotivo(aux);
+
+			citas.push_back(c);
+		}
+	}
+	else {
+		cout << "ERROR: No se pudo abrir el archivo " << ruta << endl;
+	}
+
+	return citas;
+}
+
 void Calendario(list <Cita> &citas_)
 {
 
