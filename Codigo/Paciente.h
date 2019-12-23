@@ -39,4 +39,5 @@ public:
 		inline  int      getEdad			 () const {return edad_;};
 };
 
+
 #endif

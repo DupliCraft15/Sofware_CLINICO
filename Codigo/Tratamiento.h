@@ -7,8 +7,6 @@
 #include <list>
 using namespace std;
 
-void OpcionesTratamiento();
-
 class Tratamiento
 {
 private:
@@ -27,12 +25,6 @@ public:
 	inline string getDuracion() {return duracion_;};
 	inline string getNombreTratamiento() {return nombreTratamiento_;};
 };
-
-
-
-
-
-
 
 
 #endif

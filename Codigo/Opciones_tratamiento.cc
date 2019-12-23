@@ -222,6 +222,7 @@ void ModificarTratamiento(list <Paciente> &pacientes_)
 		cout << "Paciente no encontrado"<< endl;
 	}
 }
+
 void BorrarTratamiento(list <Paciente> &pacientes_){
 	string nombre_tratamiento,duracion,dni;
 	cout << "DNI del paciente a poner tratamiento: "<< endl;

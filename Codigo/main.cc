@@ -108,7 +108,7 @@ int main()
 
 			case '2':
 
-				//OpcionesTratamiento();
+				OpcionesTratamiento(pacientes_);
 
 			break;
 

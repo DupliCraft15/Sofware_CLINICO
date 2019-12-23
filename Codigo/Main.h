@@ -18,6 +18,7 @@ void BuscarPaciente(list<Paciente> &pacientes_);
 void ModificarPaciente(list<Paciente> &pacientes_);
 int BorrarPaciente(list<Paciente> &pacientes_);
 
+void OpcionesTratamiento(list <Paciente> &pacientes_);
 void AnadirTratamiento(list<Paciente> &pacientes_);
 void ConsultarTratamiento(list<Paciente> pacientes_);
 void ModificarTratamiento(list<Paciente> &pacientes_);
