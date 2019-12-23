@@ -1,6 +1,6 @@
 #include "Paciente.h"
 #include "Tratamiento.h"
-#include "Cita.h"
+#include "Citas.h"
 #include "Main.h"
 #include <cstdlib>
 #include <iostream>
@@ -10,6 +10,23 @@ using namespace std;
 
 
 void pausa();
+
+void Calendario(list <Cita> &citas_)
+{
+
+	cout << "Tus citas son: \t" << endl;
+	int contador = 0;
+
+	for(auto i=citas_.begin(); i!=citas_.end(); i++)
+	{
+		cout << "El paciente "<< (*i).getDNI() <<" tiene como hora " << (*i).getTime() << " dia "<< (*i).getDay() << " mes " << (*i).getMonth() <<" año " << (*i).getYear() <<" y motivo: " << (*i).getMotivo() << endl;
+	}
+
+	cout << "Ya no hay mas citas programada \n" << endl;
+
+	sleep(3);
+}
+
 
 int main()
 {
@@ -98,21 +115,3 @@ int main()
     return 0;
 
 };
-
-void Calendario(citas_)
-{
-	Cita i;
-	list<Cita>:: iterator i;
-
-	cout << "Tus citas son: \t" << endl;
-	int contador = 0;
-
-	for(i=citas_.begin(); i!=citas_.end(); i++)
-	{
-		cout << "El paciente %s tiene como hora %d , dia %d, mes %d, año %d y motivo: %s \n",(*i).getDNI(), (*i).getTime(), (*i).getDay(), (*i).getMonth() , (*i).getMotivo() <<endl;
-	}
-
-	cout << "Ya no hay mas citas programada \n" << endl;
-
-	sleep(3);
-}

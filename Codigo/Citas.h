@@ -18,29 +18,29 @@ class Cita
 
 	public:
 
-	Cita(string dni_= "", int hora_=0,int day_=0,month_=0,year_=0, string motivo_=""){}
+	Cita(string dni_= "", int hora_=0,int day_=0,int month_=0,int year_=0, string motivo_=""){}
 
-	inline void setDay(string day) {day_=day;};
-	inline void setMonth(string month) {month_=month;};
-	inline void setYear(string year) {year_=year;};
+	inline void setDay(int day) {day_=day;};
+	inline void setMonth(int month) {month_=month;};
+	inline void setYear(int year) {year_=year;};
 	inline void setMotivo(string motivo) {motivo_=motivo;};
-	inline void setTime(string hora) {hora_=hora;}
+	inline void setTime(int hora) {hora_=hora;}
 	inline	void setDNI(string dni) {dni_=dni;};
 
 
 	inline int getDay() {return day_;};
 	inline int getMonth() {return month_;};
 	inline int getYear() {return year_;};
-	inline int getTime(){return time_;};
+	inline int getTime(){return hora_;};
 	inline string getMotivo() {return motivo_;};
 	inline	string getDNI() {return dni_;};
 	};
 
 	void OpcionesCita(list <Cita> &citas);
-	bool AnadirCita(list <Cita> &citas);
+	void AnadirCita(list <Cita> &citas);
 	void ModificarCita(list <Cita> &citas);
 	void BuscarCita(list <Cita> &citas);
-	void BorrarCita(list <Cita> &citas);
+	int BorrarCita(list <Cita> &citas);
 
 
 #endif

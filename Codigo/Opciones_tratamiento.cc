@@ -1,6 +1,7 @@
 #include "Tratamiento.h"
 #include "Paciente.h"
 #include "Main.h"
+#include "Citas.h"
 #include <unistd.h>
 #include <string>
 using namespace std;
