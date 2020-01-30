@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <fstream>
 #include <string>
+#include <iostream>
 using namespace std;
 
 void OpcionesPaciente(list <Paciente> &pacientes_){
@@ -44,10 +45,10 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 				case '1':
 						if(AnadirPaciente(pacientes_)==true){
-							cout<<"Paciente guardado con exito"<<endl;
+							cout<<"Paciente guardado con exito, pulse una tecla para continuar"<<endl;
 						}
 						else{
-							cout<< "El paciente introducido ya existente"<<endl;
+							cout<< "El paciente introducido ya existente, pulse una tecla para continuar"<<endl;
 						}
 
                         cin.ignore();
@@ -107,43 +108,34 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 	cout << "A continuación introduzca los datos del paciente a añadir sin espacios)"<< endl;
 	cout <<"\t";
 	cout << "DNI: "; cin >> dni; cout <<"\t";
+
+	//Buscamos el paciente
+    list<Paciente>:: iterator i;
+	
+	
+    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
+         if(i->getDNI() == dni){
+         	 return false;
+         	 
+            
+         }
+    }
+
+
 	cout << "Nombre: "; cin >> nombre; cout <<"\t";
 	cout << "Apellidos: "; cin >> apellidos; cout <<"\t";
 	cout << "Edad: "; cin >> edad; cout <<"\t";
 	cout << "Direccion: "; cin >> direccion; cout <<"\t";
 
 	Paciente p(dni,nombre,apellidos,edad,direccion);
-
-    //Buscamos el paciente
-    list<Paciente>:: iterator i;
-	bool encontrado = false;
-	
-    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
-         if(i->getDNI() == p.getDNI()){
-         	 encontrado  = true;
-             break;
-         }
-    }
-
-	if (encontrado)
-	{
-		//Si existe lo reemplazamos
-		*i = p;
-	}
-	else
-	{
-		//Si no, lo añadimos
+   
+	//De haber llegado a este punto simplemente podemos proceder a añadir el paciente a la lista	
 		pacientes_.push_back(p);
-	}
 
     //Actualizamos el archivo
-	ofstream fichero("pacientes.txt");
-
-	list <Paciente> :: iterator aux;
-	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
-	{
-		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos() << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
-	}
+	fstream fichero ("pacientes.txt",ios::app);
+	fichero << p.getDNI() << "," << p.getNombre() << "," << p.getApellidos() << "," << p.getEdad() << "," << p.getDireccion() << "\n";
+	
 	fichero.close();
 	return true;
 
@@ -153,27 +145,54 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 void BuscarPaciente(list <Paciente> &pacientes_)
 
 {
-	cout << pacientes_.size() << endl;
-	string dni;
+	
+	string dnibuscado,dni,nombre,apellidos,direccion,aux;
+	int edad;
+	size_t sz;
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
-	cout << "DNI: "; cin >> dni; cout <<"\t";
+	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
+
+	pacientes_.clear();
+	ifstream fichero("pacientes.txt");
+
+	while(!fichero.eof())
+	{
+
+
+		getline(fichero,dni,',');
+		getline(fichero,nombre,',');
+		getline(fichero,apellidos,',');
+		getline(fichero,aux,',');
+		edad=stoi(aux,&sz);
+		getline(fichero,direccion,'\n');
+
+		Paciente p(dni,nombre,apellidos,edad,direccion);
+		pacientes_.push_back(p);
+
+	}
+
+	fichero.close();
 
 	list<Paciente>:: iterator i;
 	bool encontrado = false;
     for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
-         if(i->getDNI() == dni){
+         if(i->getDNI() == dnibuscado){
          	encontrado  = true;
-            break;
+            
          }
     }
 
 	if (encontrado)
 	{
-	    cout<<i->getDNI()<<endl;
-	    cout<<i->getNombre()<<endl;
-	    cout<<i->getApellidos()<<endl;
-	    cout<<i->getEdad()<<endl;
-	    cout<<i->getDireccion()<<endl;
+
+		cout<<"_____________________________"<<endl;
+	    cout<<"DNI: "<<i->getDNI()<<endl;
+	    cout<<"Nombre: "<<i->getNombre()<<endl;
+	    cout<<"Apellidos: "<<i->getApellidos()<<endl;
+	    cout<<"Edad: "<<i->getEdad()<<endl;
+	    cout<<"Direccción: "<<i->getDireccion()<<endl;
+	    cout<<"_____________________________"<<endl;
+	    cout<<"Pulse una tecla para continuar"<<endl;
 	}
 	else {
 		cout << "Paciente no encontrado\n";
