@@ -158,15 +158,8 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 	bool encontrado = false;
     for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
          if(i->getDNI() == dnibuscado){
-         	encontrado  = true;
-            
-         }
-    }
 
-	if (encontrado)
-	{
-
-		cout<<"_____________________________"<<endl;
+        cout<<"_____________________________"<<endl;
 	    cout<<"DNI: "<<i->getDNI()<<endl;
 	    cout<<"Nombre: "<<i->getNombre()<<endl;
 	    cout<<"Apellidos: "<<i->getApellidos()<<endl;
@@ -174,10 +167,17 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 	    cout<<"Direccción: "<<i->getDireccion()<<endl;
 	    cout<<"_____________________________"<<endl;
 	    cout<<"Pulse una tecla para continuar"<<endl;
-	}
-	else {
-		cout << "Paciente no encontrado\n";
+         	encontrado  = true;
+            
+         }
     }
+
+	if (!encontrado)
+	{
+
+		cout << "Paciente no encontrado\n";
+	}
+
 
 }
 //Revisar
