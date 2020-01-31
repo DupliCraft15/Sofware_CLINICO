@@ -25,8 +25,8 @@ list <Paciente> leerFicheroPacientes (string ruta) {
 			getline(f,aux,',');
 			p.setApellidos(aux);
 			getline(f,aux,',');
-			p.setEdad(stoi(aux));
-			getline(f,aux, ',');
+			p.setEdad(aux);
+			getline(f,aux, '\n');
 			p.setDireccion(aux);
 
 			pacientes.push_back(p);

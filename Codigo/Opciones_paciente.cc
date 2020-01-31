@@ -103,7 +103,7 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 {
     //Creamos un paciente
 	string dni,nombre,apellidos,direccion;
-	int edad;
+	string edad;
 
 	cout << "A continuación introduzca los datos del paciente a añadir sin espacios)"<< endl;
 	cout <<"\t";
@@ -134,7 +134,7 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 
     //Actualizamos el archivo
 	fstream fichero ("pacientes.txt",ios::app);
-	fichero << p.getDNI() << "," << p.getNombre() << "," << p.getApellidos() << "," << p.getEdad() << "," << p.getDireccion() << "\n";
+	fichero << p.getDNI() << "," << p.getNombre() << "," << p.getApellidos() << "," << p.getEdad() << "," << p.getDireccion()<<endl;
 	
 	fichero.close();
 	return true;
@@ -146,8 +146,8 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 
 {
 	
-	string dnibuscado,dni,nombre,apellidos,direccion,aux;
-	int edad;
+	string dnibuscado,dni,nombre,apellidos,direccion;
+	string edad;
 	size_t sz;
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
@@ -162,8 +162,7 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 		getline(fichero,dni,',');
 		getline(fichero,nombre,',');
 		getline(fichero,apellidos,',');
-		getline(fichero,aux,',');
-		edad=stoi(aux,&sz);
+		getline(fichero,edad,',');
 		getline(fichero,direccion,'\n');
 
 		Paciente p(dni,nombre,apellidos,edad,direccion);
@@ -219,7 +218,7 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 			prueba++;
 			char tecla;
-			int edad;
+			string edad;
 			string variable_a_cambiar;
 
 
