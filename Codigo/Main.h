@@ -16,7 +16,7 @@ void OpcionesPaciente(list<Paciente> &pacientes_);
 bool AnadirPaciente(list<Paciente> &pacientes_);
 void BuscarPaciente(list<Paciente> &pacientes_);
 void ModificarPaciente(list<Paciente> &pacientes_);
-int BorrarPaciente(list<Paciente> &pacientes_);
+bool BorrarPaciente(list<Paciente> &pacientes_);
 list <Paciente> leerFicheroPacientes (string ruta);
 
 
