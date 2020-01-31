@@ -56,27 +56,48 @@ void OpcionesTratamiento(list <Paciente> &pacientes_)
 				{
 
 					case '1':
+						system("clear");
 
 						AnadirTratamiento(pacientes_);
+
+						cin.ignore();
+						cin.get();
+						
 
 					break;
 
 					case '2':
-
+						system("clear");
+						
 						ConsultarTratamiento(pacientes_);
 
+
+						cin.ignore();
+						cin.get();
+						
 					break;
 
 					case '3':
-
+						system("clear");
+						
 						ModificarTratamiento(pacientes_);
 
+
+						cin.ignore();
+						cin.get();
+						
 					break;
 
 
 					case '4':
-
+						system("clear");
+						
 						BorrarTratamiento(pacientes_);
+
+						cin.ignore();
+						cin.get();
+
+						
 
 
 					break;
@@ -109,6 +130,9 @@ void AnadirTratamiento(list <Paciente> &pacientes_){
 	cout << "DNI del paciente a poner tratamiento: "<< endl;
 	cin>>dni;
 
+	pacientes_.clear();
+	pacientes_=leerFicheroPacientes("pacientes.txt");
+
 	list<Paciente>:: iterator i;
     for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
          if(i->getDNI() == dni){
@@ -130,6 +154,8 @@ void AnadirTratamiento(list <Paciente> &pacientes_){
 
 
 		i->tratamientos_.push_back(t);
+		cout<<"Tratamiento introducido correctamente, pulse una tecla para continuar"<<endl;
+
 	}
 	else
 	{

@@ -11,6 +11,21 @@ using namespace std;
 
 void pausa();
 
+bool compruebaDNI(string dni){
+	if(dni.length()!=9)
+	{
+		return false;
+  	}
+
+	else
+	{
+		return true;
+	}
+    
+	
+}
+
+
 list <Paciente> leerFicheroPacientes (string ruta) {
 	ifstream f(ruta);
 	list<Paciente> pacientes;
@@ -86,6 +101,7 @@ void Calendario(list <Cita> &citas_)
 
 int main()
 {
+	system("clear");
 
 	bool bandera=false;
 

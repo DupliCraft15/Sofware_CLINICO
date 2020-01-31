@@ -11,7 +11,7 @@
 using namespace std;
 
 void pausa();
-
+bool compruebaDNI(string dni);
 void OpcionesPaciente(list<Paciente> &pacientes_);
 bool AnadirPaciente(list<Paciente> &pacientes_);
 void BuscarPaciente(list<Paciente> &pacientes_);

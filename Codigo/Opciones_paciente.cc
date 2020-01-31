@@ -44,6 +44,7 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 			{
 
 				case '1':
+						system("clear");
 						if(AnadirPaciente(pacientes_)==true){
 							cout<<"Paciente guardado con exito, pulse una tecla para continuar"<<endl;
 						}
@@ -59,7 +60,7 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 
 				case '2':
-
+					system("clear");
 					BuscarPaciente(pacientes_);
 
 					cin.ignore();
@@ -68,16 +69,18 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 				break;
 
 				case '3':
+					system("clear");
 
 					ModificarPaciente(pacientes_);
-
+						cin.ignore();
+                        cin.get();
 
 				break;
 
 
 
 				case '4':
-
+					system("clear");
 					if(BorrarPaciente(pacientes_)==true){
 							cout<<"Paciente eliminado con exito, pulse una tecla para continuar"<<endl;
 						}
@@ -94,6 +97,7 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 				case '5':
 
 						bandera=true;
+						system("clear");
 				break;
 
 				default:
@@ -115,7 +119,14 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
 
 	cout << "A continuación introduzca los datos del paciente a añadir sin espacios)"<< endl;
 	cout <<"\t";
-	cout << "DNI: "; cin >> dni; cout <<"\t";
+	cout << "DNI: "; 
+	cin >> dni; cout <<"\t";
+
+	while(compruebaDNI(dni)!=true)
+	{
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dni; cout <<"\t";
+	}
 
 	//Buscamos el paciente
     list<Paciente>:: iterator i;
@@ -158,6 +169,12 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 	
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
+
+	while(compruebaDNI(dnibuscado)!=true)
+	{
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dnibuscado; cout <<"\t";
+	}
 	
 	ifstream fichero("pacientes.txt");
 
@@ -203,6 +220,14 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 	string dni;
 	cout << "Introduzca el DNI del paciente a modificar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
+	while(compruebaDNI(dni)!=true)
+	{
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dni; cout <<"\t";
+	}
+
+	pacientes_.clear();
+	pacientes_=leerFicheroPacientes("pacientes.txt");
 
 	list<Paciente>:: iterator i;
 
@@ -216,7 +241,6 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 			prueba++;
 			char tecla;
-			string edad;
 			string variable_a_cambiar;
 
 
@@ -225,6 +249,7 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 			cout << "\t2 .- Apellidos" << endl;
 			cout << "\t3 .- Edad" << endl;
 			cout << "\t4 .- Direccción" << endl;
+			cin>>tecla;
 
 
 				switch(tecla)
@@ -233,6 +258,8 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 					cout<<"Introduzca el Nombre: ";
 					cin>> variable_a_cambiar;
 					(*i).setNombre(variable_a_cambiar);
+					cout<<"Variable cambiada correctamente ";
+
 
 					break;
 
@@ -240,19 +267,22 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 					cout<<"Introduzca los apellidos: ";
 					cin>> variable_a_cambiar;
 					(*i).setApellidos(variable_a_cambiar);
+					cout<<"Variable cambiada correctamente ";
 
 					break;
 
 					case '3':
 					cout<<"Introduzca la Edad: ";
-					cin>> edad;
-					(*i).setEdad(edad);
+					cin>> variable_a_cambiar;
+					(*i).setEdad(variable_a_cambiar);
+					cout<<"Variable cambiada correctamente ";
 					break;
 					
 					case '4':
 					cout<<"Introduzca la Dirección: ";
 					cin>> variable_a_cambiar;
 					(*i).setDireccion(variable_a_cambiar);
+					cout<<"Variable cambiada correctamente ";
 					break;
 
 					default:
@@ -260,9 +290,17 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 					cout<<"Opción incorrecta"<<endl;
 					
 					break;
+
+					
 				}
+				cout<<"Cambiado correctamente, pulse una tecla para volver"<<endl;
+				sleep(3);
+				break;
 			}
 	}
+
+
+
 
 	if(prueba==0)
 	{
@@ -270,17 +308,32 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 		cout << "Paciente no encontrado"<< endl;
 	
 	}
+	if(pacientes_.empty())
+	    {
+	    	ofstream fichero("pacientes.txt");
+	    	fichero <<" ";
+	    	fichero.close();
+	    }
 
-	ofstream fichero("pacientes.txt");
-	list <Paciente> :: iterator aux;
+	    else
+	    {
+	    	ofstream fichero("pacientes.txt");
+			list<Paciente>:: iterator aux;
 
-	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
-	{
-		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos();
-		fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
-	}
-	fichero.close();
-	sleep(3);
+			for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
+			{
+				if(aux->getDNI()!=""&&aux->getNombre()!=""&&aux->getApellidos()!=""&&aux->getEdad()!=""&&aux->getDireccion()!="")
+				{fichero << aux->getDNI() << "," << aux->getNombre() << "," << aux->getApellidos() << "," << aux->getEdad() << "," << aux->getDireccion()<<endl;
+				}
+
+			}
+			fichero.close();
+			
+	    }
+
+
+	
+	
 
 }
 
@@ -292,6 +345,11 @@ bool BorrarPaciente(list <Paciente> &pacientes_)
 	string dni;
 	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
+	while(compruebaDNI(dni)!=true)
+	{
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dni; cout <<"\t";
+	}
 
 	pacientes_.clear();
 
@@ -319,16 +377,28 @@ bool BorrarPaciente(list <Paciente> &pacientes_)
     
     if (comprobar==true)
     {
-	    ofstream fichero("pacientes.txt");
-		list<Paciente>:: iterator aux;
+	    if(pacientes_.empty())
+	    {
+	    	ofstream fichero("pacientes.txt");
+	    	fichero <<" ";
+	    	fichero.close();
+	    }
 
-		for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
-		{
-			fichero << aux->getDNI() << "," << aux->getNombre() << "," << aux->getApellidos() << "," << aux->getEdad() << "," << aux->getDireccion()<<endl;
-	
-		}
-		fichero.close();
-		return true;
+	    else
+	    {
+	    	ofstream fichero("pacientes.txt");
+			list<Paciente>:: iterator aux;
+
+			for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
+			{
+				if(aux->getDNI()!=""&&aux->getNombre()!=""&&aux->getApellidos()!=""&&aux->getEdad()!=""&&aux->getDireccion()!="")
+				{fichero << aux->getDNI() << "," << aux->getNombre() << "," << aux->getApellidos() << "," << aux->getEdad() << "," << aux->getDireccion()<<endl;
+				}
+
+			}
+			fichero.close();
+			return true;
+	    }
 		
     }
     else{
