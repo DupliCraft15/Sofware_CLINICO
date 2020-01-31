@@ -1,7 +1,0 @@
-20228782Y,Diego,Gomez,21,Cordoba
-123,Juan,loco,23,Cordoba
-456,Lucas,Espanita,34,Rabanales
-987,Marcos,Valer,2345,Marter
-342323P,Martin,Lugo,45,Jaen
-12,A,LA,234,Niza
-202287212S,Victor,Perez,12,Lugo
