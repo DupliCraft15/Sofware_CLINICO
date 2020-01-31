@@ -148,7 +148,6 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 	
 	string dnibuscado,dni,nombre,apellidos,direccion;
 	string edad;
-	size_t sz;
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
 
