@@ -158,37 +158,45 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 	
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
-	pacientes_.clear();
+	
+	ifstream fichero("pacientes.txt");
 
-	pacientes_=leerFicheroPacientes("pacientes.txt");
+	if(!fichero.eof()){
 
-	list<Paciente>:: iterator i;
-	bool encontrado = false;
-    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
-         if(i->getDNI() == dnibuscado){
-        cout<<""<<endl;
-        cout<<"_____________________________"<<endl;
-	    cout<<"DNI: "<<i->getDNI()<<endl;
-	    cout<<"Nombre: "<<i->getNombre()<<endl;
-	    cout<<"Apellidos: "<<i->getApellidos()<<endl;
-	    cout<<"Edad: "<<i->getEdad()<<endl;
-	    cout<<"Dirección: "<<i->getDireccion()<<endl;
-	    cout<<"_____________________________"<<endl;
-	    cout<<"Pulse una tecla para continuar"<<endl;
-         	encontrado  = true;
-            
-         }
-    }
+		pacientes_.clear();
+		pacientes_=leerFicheroPacientes("pacientes.txt");
+		list<Paciente>:: iterator i;
+		bool encontrado = false;
+		for (i = pacientes_.begin(); i != pacientes_.end(); i++) 
+		{
+			   if(i->getDNI() == dnibuscado)
+			   {
+			        cout<<""<<endl;
+			        cout<<"_____________________________"<<endl;
+				    cout<<"DNI: "<<i->getDNI()<<endl;
+				    cout<<"Nombre: "<<i->getNombre()<<endl;
+				    cout<<"Apellidos: "<<i->getApellidos()<<endl;
+				    cout<<"Edad: "<<i->getEdad()<<endl;
+				    cout<<"Dirección: "<<i->getDireccion()<<endl;
+				    cout<<"_____________________________"<<endl;
+				    cout<<"Pulse una tecla para continuar"<<endl;
+			         	encontrado  = true;
+			            
+			   }
+		}
 
-	if (!encontrado)
-	{
+		if (!encontrado)
+		{
 
-		cout << "Paciente no encontrado\n";
+			cout << "Paciente no encontrado\n";
+		}
+
 	}
-
-
+	else{
+		cout<<"Base de datos de pacientes vacía"<<endl;
+	}
 }
-//Revisar
+
 void ModificarPaciente(list <Paciente> &pacientes_)
 {
 
@@ -250,7 +258,7 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 					default:
 
 					cout<<"Opción incorrecta"<<endl;
-
+					
 					break;
 				}
 			}
@@ -280,11 +288,13 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 bool BorrarPaciente(list <Paciente> &pacientes_)
 {
+	
 	string dni;
 	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
 
 	pacientes_.clear();
+
 
 	pacientes_=leerFicheroPacientes("pacientes.txt");
 	list<Paciente>:: iterator i;
@@ -296,15 +306,20 @@ bool BorrarPaciente(list <Paciente> &pacientes_)
          if(i->getDNI() == dni){
 
 			comprobar=true;
+			
 		   	pacientes_.erase(i);
+		   	break;
+		   	
 		   	
 
         }
     }
+
+    
     
     if (comprobar==true)
     {
-	    fstream fichero("pacientes.txt");
+	    ofstream fichero("pacientes.txt");
 		list<Paciente>:: iterator aux;
 
 		for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
@@ -320,4 +335,5 @@ bool BorrarPaciente(list <Paciente> &pacientes_)
     	
 		return false;    	
     }
+    
 }
