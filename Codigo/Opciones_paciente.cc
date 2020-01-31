@@ -146,31 +146,15 @@ void BuscarPaciente(list <Paciente> &pacientes_)
 
 {
 	
-	string dnibuscado,dni,nombre,apellidos,direccion;
-	string edad;
-	size_t sz;
+	string dnibuscado,dni,nombre,apellidos,direccion,edad;
+	
+	
+
 	cout << "Introduzca el DNI del paciente a buscar: "<< endl;
 	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
-
 	pacientes_.clear();
-	ifstream fichero("pacientes.txt");
 
-	while(!fichero.eof())
-	{
-
-
-		getline(fichero,dni,',');
-		getline(fichero,nombre,',');
-		getline(fichero,apellidos,',');
-		getline(fichero,edad,',');
-		getline(fichero,direccion,'\n');
-
-		Paciente p(dni,nombre,apellidos,edad,direccion);
-		pacientes_.push_back(p);
-
-	}
-
-	fichero.close();
+	pacientes_=leerFicheroPacientes("pacientes.txt");
 
 	list<Paciente>:: iterator i;
 	bool encontrado = false;
