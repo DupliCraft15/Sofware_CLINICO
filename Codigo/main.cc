@@ -117,14 +117,17 @@ void Calendario(list <Cita> &citas_)
 	cout << "Tus citas son: \t" << endl;
 	int contador = 0;
 
+
 	for(auto i=citas_.begin(); i!=citas_.end(); i++)
 	{
 		cout << "El paciente "<< (*i).getDNI() <<" tiene como hora " << (*i).getTime() << " dia "<< (*i).getDay() << " mes " << (*i).getMonth() <<" año " << (*i).getYear() <<" y motivo: " << (*i).getMotivo() << endl;
 	}
 
-	cout << "Ya no hay mas citas programada \n" << endl;
+	cout << "Ya no hay mas citas programada"<<endl;
+	cout<<"Pulsa una tecla para salir"<<endl;
 
-	sleep(3);
+	cin.ignore();
+	cin.get();
 }
 
 

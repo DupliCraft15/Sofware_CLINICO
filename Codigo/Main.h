@@ -24,7 +24,7 @@ void BuscarPaciente(list<Paciente> &pacientes_);
 void ModificarPaciente(list<Paciente> &pacientes_);
 bool BorrarPaciente(list<Paciente> &pacientes_);
 list <Paciente> leerFicheroPacientes (string ruta);
-list <Cita> leerFicheroCitas (string ruta);
+
 
 
 void OpcionesTratamiento(list <Paciente> &pacientes_);
@@ -38,6 +38,7 @@ void AnadirCita(list <Cita> &citas_);
 bool ModificarCita(list <Cita> &citas_);
 void BuscarCita(list <Cita> &citas_);
 bool BorrarCita(list <Cita> &citas_);
+list <Cita> leerFicheroCitas (string ruta);
 
 
 

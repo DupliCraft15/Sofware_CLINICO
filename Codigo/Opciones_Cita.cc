@@ -289,38 +289,79 @@ bool ModificarCita(list <Cita> &citas_)
 	list<Cita>::iterator i;
 	bool comprobar=false;
 
-	ifstream fichero("citas.txt");
-
-	if(!fichero.eof())
+	
+	for (i = citas_.begin(); i != citas_.end(); i++) 
 	{
+		   if(i->getTime()==hora and i->getDay() == dia and i->getMonth()==mes and i->getYear()==ano)
+		   {
+		        
+			cout << "Seleccione el campo a modificar (Para modificar más de un campo repita la operación)"<< endl;
+			cout << "\t1 .- Hora" << endl;
+			cout << "\t2 .- Dia" << endl;
+			cout << "\t3 .- Mes" << endl;
+			cout << "\t4 .- Año" << endl;
+			cout << "\t4 .- Motivo" << endl;
+			char tecla;
+			cin>>tecla;
 
-		for (i = citas_.begin(); i != citas_.end(); i++) 
-		{
-			   if(i->getDay() == dia&&i->getMonth()==mes&&i->getYear()==ano)
-			   {
-			        cout << "Introduzca los nuevos datos de la cita"<< endl;
-					cout <<"\t";
-					cout << "Hora: "; cin >> aux; cout <<"\t";
-					(*i).setDay(aux);
-					cout << "Día: "; cin >> aux; cout <<"\t";
-					(*i).setMonth(aux);
-					cout << "Mes: "; cin >> aux; cout <<"\t";
-					(*i).setYear(aux);
-					cout << "Año: "; cin >> aux; cout <<"\t";
-					(*i).setMotivo(aux);
-					cout << "Motivo: "; cin >> aux; cout <<"\t";
-					(*i).setTime(aux);
-					comprobar=true;
+				switch(tecla)
+				{
+					case '1':
+					cout<<"Introduzca la hora: ";
+					cin>>hora;
+					(*i).setTime(hora);
+					cout<<"Variable cambiada correctamente ";
+
+
 					break;
-			            
-			   }
-		}
+
+					case '2':
+					cout<<"Introduzca el dia: ";
+					cin>>dia;
+					(*i).setDay(dia);
+					cout<<"Variable cambiada correctamente ";
+
+					break;
+
+					case '3':
+					cout<<"Introduzca el mes: ";
+					cin>>mes;
+					(*i).setMonth(mes);
+					cout<<"Variable cambiada correctamente ";
+					break;
+					
+					case '4':
+					cout<<"Introduzca el año: ";
+					cin>>ano;
+					(*i).setYear(ano);
+					cout<<"Variable cambiada correctamente ";
+					break;
+
+					case '5':
+					cout<<"Introduzca el motivo: ";
+					cin>>motivo;
+					(*i).setMotivo(motivo);
+					cout<<"Variable cambiada correctamente ";
+					break;
+
+					default:
+
+					cout<<"Opción incorrecta"<<endl;
+					
+					break;
+
+					
+				}
+				cout<<"Cambiado correctamente, pulse una tecla para volver"<<endl;
+				comprobar=true;
+				sleep(3);
+				break;    
+		   }
 	}
-	else{return false;}
 
 	if(comprobar)
 	{
-		ofstream fichero("Citas.txt");
+		ofstream fichero("citas.txt");
 		list <Cita> :: iterator aux;
 
 		for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
@@ -343,6 +384,7 @@ bool ModificarCita(list <Cita> &citas_)
 void BuscarCita(list<Cita> &citas_)
 {
 	string dia,mes,ano;
+	int vacio=0;
 
 	cout << "Introduzca el dia de la cita a buscar"<< endl;
 	cout <<"\t";
@@ -375,44 +417,33 @@ void BuscarCita(list<Cita> &citas_)
 	citas_.clear();
 	citas_=leerFicheroCitas("citas.txt");
 
-	
-	ifstream fichero("citas.txt");
-
-	if(!fichero.eof())
+	list<Cita>:: iterator i;
+	bool encontrado = false;
+	for (i = citas_.begin(); i != citas_.end(); i++) 
 	{
-
-		list<Cita>:: iterator i;
-		bool encontrado = false;
-		for (i = citas_.begin(); i != citas_.end(); i++) 
-		{
-			   if(i->getDay() == dia&&i->getMonth()==mes&&i->getYear()==ano)
-			   {
-			   		cout << "Las citas que tiene para este dia son" << endl;
-			        cout<<""<<endl;
-			        cout<<"_____________________________"<<endl;
-				    cout<<"DNI: "<<i->getDNI()<<endl;
-				    cout<<i->getDay()<<"/"<<i->getMonth()<<"/"<<i->getYear()<<endl;
-				    cout<<"Con motivo: "<<i->getMotivo()<<endl;
-				    cout<<"_____________________________"<<endl;
-				    
-				    sleep(2);
-			        encontrado=true;
-
-			            
-			   }
-
-		}
-
-
-
-			if (!encontrado)
-			{
-
-				cout << "No hay citas para ese dia\n";
-			}
+		   if(i->getDay() == dia and i->getMonth()==mes and i->getYear()==ano)
+		   {
+		   		cout << "Las citas que tiene para este dia son" << endl;
+		        cout<<""<<endl;
+		        cout<<"_____________________________"<<endl;
+			    cout<<"DNI: "<<i->getDNI()<<endl;
+			    cout<<i->getDay()<<"/"<<i->getMonth()<<"/"<<i->getYear()<<endl;
+			    cout<<"Con motivo: "<<i->getMotivo()<<endl;
+			    cout<<"_____________________________"<<endl;
+			    
+			    sleep(2);
+		        encontrado=true;
+		        vacio++;
+		   }
 
 	}
-	else{
-		cout<<"Base de datos de citas vacía"<<endl;
+
+	if (!encontrado)
+	{
+		cout << "No hay citas para ese dia\n";
+	}
+	else if(vacio==0)
+	{
+		cout<<"No hay citas en la base de datos"<<endl;
 	}
 }
