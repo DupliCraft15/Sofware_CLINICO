@@ -70,6 +70,8 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 				case '3':
 
 					ModificarPaciente(pacientes_);
+					cin.ignore();
+					cin.get();
 
 
 				break;
@@ -78,7 +80,16 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 
 				case '4':
 
-					BorrarPaciente(pacientes_);
+					if(BorrarPaciente(pacientes_)==true)
+					{
+						cout<<"Paciente borrado con exito"<<endl;
+					}
+					else
+					{
+						cout<<"El DNI introducido no corresponde a ningun paciente"<<endl;
+					}
+					cin.ignore();
+					cin.get();
 
 
 				break;
@@ -187,7 +198,8 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 	string dni;
 	cout << "Introduzca el DNI del paciente a modificar: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
-
+	pacientes_.clear();
+	pacientes_=leerFicheroPacientes("pacientes.txt");
 	list<Paciente>:: iterator i;
 
 	int prueba = 0;
@@ -270,31 +282,32 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 
 
 
-int BorrarPaciente(list <Paciente> &pacientes_)
+bool BorrarPaciente(list <Paciente> &pacientes_)
 {
-	string dni;
+	string dnibuscado;
+	
 	cout << "Introduzca el DNI del paciente a borrar: "<< endl;
-	cout << "DNI: "; cin >> dni; cout <<"\t";
+	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
+	pacientes_.clear();
+
+	pacientes_=leerFicheroPacientes("pacientes.txt");
 
 	list<Paciente>:: iterator i;
 	bool encontrado = false;
     for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
-         if(i->getDNI() == dni){
-         	encontrado  = true;
-            break;
+         if(i->getDNI() == dnibuscado)
+         {
+         	pacientes_.erase(i);
+         	encontrado=true;
          }
     }
+    if(encontrado==false)
+    {
+    	cout<<"No se ha encontrado el paciente"<<endl;
+    	return false;
 
-	if (encontrado)
-	{
-	   pacientes_.erase(i);
-	   cout<<"Paciente borrado"<<endl;
-	   cin.ignore();
-	   cin.get();
-	}
-	else {
-		cout << "Paciente no encontrado\n";
     }
+
     ofstream fichero("pacientes.txt");
 
 	list <Paciente> :: iterator aux;
@@ -306,3 +319,4 @@ int BorrarPaciente(list <Paciente> &pacientes_)
 	fichero.close();
 	return true;
 }
+
