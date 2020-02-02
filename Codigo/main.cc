@@ -11,6 +11,50 @@ using namespace std;
 
 void pausa();
 
+bool compruebaDia(string dia){
+
+	int aux=stoi(dia);
+	if(aux>=1||aux<=30){
+		return true;
+	}
+	return false;
+}
+
+bool compruebaMes(string mes){
+
+	int aux=stoi(mes);
+	if(aux>=1||aux<=12){
+		return true;
+	}
+	return false;
+}
+
+
+bool compruebaAno(string ano){
+
+	int aux=stoi(ano);
+	if(aux>=2000||aux<=3000){
+		return true;
+	}
+	return false;
+}
+
+
+bool compruebaDNI(string dni){
+	if(dni.length()!=9)
+	{
+		return false;
+  	}
+
+	else
+	{
+		return true;
+	}
+    
+	
+}
+
+
 list <Paciente> leerFicheroPacientes (string ruta) {
 	ifstream f(ruta);
 	list<Paciente> pacientes;
@@ -47,14 +91,14 @@ list <Cita> leerFicheroCitas (string ruta) {
 		while(!f.eof()){
 			Cita c;
 			getline(f,aux,',');
-			c.setTime(stoi(aux));
+			c.setDNI(aux);
 			getline(f,aux,',');
-			c.setDay(stoi(aux));
+			c.setTime(aux);
 			getline(f,aux,',');
-			c.setMonth(stoi(aux));
+			c.setMonth(aux);
 			getline(f,aux,',');
-			c.setYear(stoi(aux));
-			getline(f,aux, ',');
+			c.setYear(aux);
+			getline(f,aux, '\n');
 			c.setMotivo(aux);
 
 			citas.push_back(c);
@@ -86,13 +130,14 @@ void Calendario(list <Cita> &citas_)
 
 int main()
 {
+	system("clear");
 
 	bool bandera=false;
 
 	char tecla;
 
 	list <Paciente> pacientes_  = leerFicheroPacientes("pacientes.txt");
-	list <Cita> citas_;
+	list <Cita> citas_=leerFicheroCitas("citas.txt");
 
 	//Inicializar las listas
 	//Llamar a funciones que lean los ficheros

@@ -3,22 +3,20 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include <stdlib.h>
-#include "Main.h"
-#include "Paciente.h"
-#include "Tratamiento.h"
-
+#include <string>
+#include <list>
+using namespace std;
 
 class Cita
 {
 	private:
-	int day_,month_,year_,hora_;
+	string day_,month_,year_,hora_;
 	string motivo_,dni_;
 
 
 	public:
 
-	Cita(string dni= "", int hora=0,int day=0,int month=0,int year=0, string motivo=""){
+	Cita(string dni= "", string hora="",string day="",string month="",string year="", string motivo=""){
         dni_=dni;
         hora_=hora;
         day_=day;
@@ -29,27 +27,22 @@ class Cita
 
 
 
-	inline void setDay(int day) {day_=day;};
-	inline void setMonth(int month) {month_=month;};
-	inline void setYear(int year) {year_=year;};
+	inline void setDay(string day) {day_=day;};
+	inline void setMonth(string month) {month_=month;};
+	inline void setYear(string year) {year_=year;};
 	inline void setMotivo(string motivo) {motivo_=motivo;};
-	inline void setTime(int hora) {hora_=hora;}
+	inline void setTime(string hora) {hora_=hora;}
 	inline	void setDNI(string dni) {dni_=dni;};
 
 
-	inline int getDay() {return day_;};
-	inline int getMonth() {return month_;};
-	inline int getYear() {return year_;};
-	inline int getTime(){return hora_;};
+	inline string getDay() {return day_;};
+	inline string getMonth() {return month_;};
+	inline string getYear() {return year_;};
+	inline string getTime(){return hora_;};
 	inline string getMotivo() {return motivo_;};
-	inline	string getDNI() {return dni_;};
+	inline string getDNI() {return dni_;};
 	};
 
-	void OpcionesCita(list <Cita> &citas_);
-	void AnadirCita(list <Cita> &citas_);
-	void ModificarCita(list <Cita> &citas_);
-	void BuscarCita(list <Cita> &citas_);
-	int BorrarCita(list <Cita> &citas_);
 
 
 #endif
