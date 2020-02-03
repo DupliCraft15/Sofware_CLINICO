@@ -141,25 +141,20 @@ void Calendario(list <Cita> &citas_)
 {
 
 	cout << "Tus citas son: \t" << endl;
-	bool comprobar=true;
 	list <Cita>::iterator i;
 
 	citas_.clear();
 	citas_=leerFicheroCitas("citas.txt");
 
+	if(citas_.empty())
+	{
+		cout<<"No hay citas en la base de datos"<<endl;
+	}
 
 	for( i=citas_.begin(); i!=citas_.end(); i++)
 	{
-		
-		if(i->getDNI()=="" and i->getDay()=="" and i->getMonth()=="" and i->getYear()=="" and i->getTime()=="")
+		if(i->getDNI()!="" and i->getDay()!="" and i->getMonth()!="" and i->getYear()!="" and i->getTime()!="")
 		{
-			comprobar=false;
-			cout<<"No hay citas en la base de datos"<<endl;
-		}
-
-		if(comprobar==true)
-		{
-
 			cout<<""<<endl;
 	        cout<<"_____________________________"<<endl;
 		    cout<<"DNI: "<<i->getDNI()<<endl;
