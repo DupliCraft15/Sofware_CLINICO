@@ -100,6 +100,32 @@ list <Paciente> leerFicheroPacientes (string ruta) {
 	return pacientes;
 }
 
+list <Tratamiento> leerFicheroTratamientos (string ruta) {
+	ifstream f(ruta);
+	list<Tratamiento> tratamientos;
+	string aux;
+	if  (f) {
+		while(!f.eof()){
+			Tratamiento t;
+			getline(f,aux,',');
+			t.setDNI(aux);
+			getline(f,aux,',');
+			t.setNombreTratamiento(aux);
+			getline(f,aux,',');
+			t.setDuracion(aux);
+			getline(f,aux, '\n');
+
+
+			tratamientos.push_back(t);
+		}
+	}
+	else {
+		cout << "ERROR: No se pudo abrir el archivo " << ruta << endl;
+	}
+
+	return tratamientos;
+}
+
 list <Cita> leerFicheroCitas (string ruta) {
 	ifstream f(ruta);
 	list<Cita> citas;
@@ -179,6 +205,7 @@ int main()
 
 	list <Paciente> pacientes_  = leerFicheroPacientes("pacientes.txt");
 	list <Cita> citas_=leerFicheroCitas("citas.txt");
+	list <Tratamiento> tratamientos_=leerFicheroTratamientos("tratamientos.txt");
 
 	//Inicializar las listas
 	//Llamar a funciones que lean los ficheros
@@ -224,7 +251,7 @@ int main()
 
 			case '2':
 
-				OpcionesTratamiento(pacientes_);
+				OpcionesTratamiento(tratamientos_);
 
 			break;
 

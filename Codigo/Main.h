@@ -28,11 +28,12 @@ void Calendario(list <Cita> &citas_);
 
 
 
-void OpcionesTratamiento(list <Paciente> &pacientes_);
-void AnadirTratamiento(list<Paciente> &pacientes_);
-void ConsultarTratamiento(list<Paciente> pacientes_);
-void ModificarTratamiento(list<Paciente> &pacientes_);
-void BorrarTratamiento(list<Paciente> &pacientes_);
+void OpcionesTratamiento(list <Tratamiento> &tratamientos_);
+void AnadirTratamiento(list<Tratamiento> &tratamientos_);
+void ConsultarTratamiento(list<Tratamiento> &tratamientos_);
+void ModificarTratamiento(list<Tratamiento> &tratamientos_);
+bool BorrarTratamiento(list<Tratamiento> &tratamientos_);
+list <Tratamiento> leerFicheroTratamientos (string ruta);
 
 void OpcionesCita(list <Cita> &citas_);
 void AnadirCita(list <Cita> &citas_);

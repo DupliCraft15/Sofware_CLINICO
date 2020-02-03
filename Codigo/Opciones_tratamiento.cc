@@ -11,8 +11,8 @@ void OpcionesTratamiento(list <Tratamiento> &tratamientos_)
 
 		bool bandera=false;
 
-			ifstream fe("tratamiento.txt");
-		    if (!fe){ofstream ofs("tratamiento.txt");}
+			ifstream fe("tratamientos.txt");
+		    if (!fe){ofstream ofs("tratamientos.txt");}
 
 		    char tecla;
 
@@ -88,8 +88,14 @@ void OpcionesTratamiento(list <Tratamiento> &tratamientos_)
 					case '4':
 						system("clear");
 						
-						BorrarTratamiento(tratamientos_);
-
+							if(BorrarTratamiento(tratamientos_)==true)
+							{
+								cout<<"Eliminado correctamente, pulse una tecla para continuar"<<endl;
+							}
+							else
+							{
+								cout<<"No encontrado o no ha sido posible eliminarlo"<<endl;
+							}
 						cin.ignore();
 						cin.get();
 
@@ -169,7 +175,7 @@ bool BorrarTratamiento(list <Tratamiento> &tratamientos_)
 			for(aux=tratamientos_.begin() ; aux!=tratamientos_.end() ; aux++)
 			{
 				if(aux->getDNI()!=""&&aux->getNombreTratamiento()!=""&&aux->getDuracion()!="")
-				{fichero << aux->getDNI() << "," << aux->getNombreTratamiento() << "," << aux->getDuracion() <<<<endl;
+				{fichero << aux->getDNI() << "," << aux->getNombreTratamiento() << "," << aux->getDuracion() <<endl;
 				}
 
 			}
@@ -199,12 +205,13 @@ void AnadirTratamiento(list <Tratamiento> &tratamientos_)
 		cin >> dni; cout <<"\t";
 	}
 	
-	cout<<"Nombre del tratamiento: "<<endl;cout <<"\t";
+	cout<<"Nombre del tratamiento: ";
 	cin.ignore();
 	cin.getline(i,800); 
 	nombre+=i;
+	cout <<"\t";
 
-	cout<<"Duración del Tratamiento: "<<endl;cout <<"\t";
+	cout<<"Duración del Tratamiento: ";
 	cin.getline(i,800); 
 	duracion+=i;
 
@@ -244,7 +251,7 @@ void ModificarTratamiento(list <Tratamiento> &tratamientos_)
 	tratamientos_=leerFicheroTratamientos("tratamientos.txt");
 
 	
-	list<Cita>::iterator i;
+	list<Tratamiento>::iterator i;
 
 	int prueba=0;
 	
@@ -323,7 +330,7 @@ void ModificarTratamiento(list <Tratamiento> &tratamientos_)
 			for(aux=tratamientos_.begin() ; aux!=tratamientos_.end() ; aux++)
 			{
 				if(aux->getDNI()!=""&&aux->getNombreTratamiento()!=""&&aux->getDuracion()!="")
-				{fichero << aux->getDNI() << "," << aux->getNombreTratamiento() << "," << aux->getDuracion() <<<<endl;
+				{fichero << aux->getDNI() << "," << aux->getNombreTratamiento() << "," << aux->getDuracion() <<endl;
 				}
 			}
 			fichero.close();
@@ -332,14 +339,14 @@ void ModificarTratamiento(list <Tratamiento> &tratamientos_)
 
 }
 
-void BuscarTratamiento(list <Tratamiento> &tratamientos_)
+void ConsultarTratamiento(list <Tratamiento> &tratamientos_)
 
 {
 
 	string dnibuscado,dni,nombre,duracion;
 	
-	cout << "Introduzca el DNI del paciente a buscar su tratamiento: "<< endl;
-	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
+	cout << "Introduzca el DNI del paciente a buscar su tratamiento: "<< endl;cout <<"\t";
+	cout << "DNI: "; cin >> dnibuscado; 
 
 	while(compruebaDNI(dnibuscado)!=true)
 	{
