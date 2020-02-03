@@ -198,7 +198,7 @@ bool BorrarCita(list <Cita> &citas_)
 void AnadirCita(list <Cita> &citas_)
 
 {
-	string hora,dia,mes,ano;
+	string hora,dia,mes,ano,aux;
 	string motivo, dni;
 	cout << "Introduzca los datos de la cita"<< endl;
 	cout <<"\t";
@@ -208,34 +208,25 @@ void AnadirCita(list <Cita> &citas_)
 		cout<<"Por favor, introduzca un Dni válido: ";
 		cin >> dni; cout <<"\t";
 	}
-	cout << "Hora: "; cin >> hora; cout <<"\t";
+	
+	cout<<"Hora: "<<endl;cout <<"\t";
+	cout<<"(Por favor siga el formato 'hh:mm' ej:18:30)"<<endl;cout <<"\t";
+	cin>>hora; cout <<"\t";
 
 
-	cout << "Día: "; cin >> dia; cout <<"\t";
+	cout<<"Fecha: "<<endl;cout <<"\t";
+	cout<<"(Por favor siga el formato 'dd/mm/yy' ej:01/02/2020)"<<endl;cout <<"\t";
+	cin>>aux; cout <<"\t";
+	dia=aux.substr(0,2);
+	mes=aux.substr(3,2);
+	ano=aux.substr(6,9);
 
-	while(compruebaDia(dia)!=true)
-	{
-		cout<<"Por favor, introduzca un dia válido: ";
-		cin >> dia; cout <<"\t";
-	}
+	cout<<"Motivo: "<<endl;
+	
+	getline(std::cin,motivo); cout <<"\t";
 
 
-	cout << "Mes: "; cin >> mes; cout <<"\t";
 
-	while(compruebaMes(mes)!=true)
-	{
-		cout<<"Por favor, introduzca un mes válido: ";
-		cin >> mes; cout <<"\t";
-	}
-
-	cout << "Año: "; cin >> ano; cout <<"\t";
-
-	while(compruebaAno(ano)!=true)
-	{
-		cout<<"Por favor, introduzca un Año válido: ";
-		cin >> ano; cout <<"\t";
-	}
-	cout << "Motivo de la cita: "; cin >> motivo; cout <<"\t";
 	Cita c(dni,hora,dia,mes,ano,motivo);
 	citas_.push_back(c);
 
@@ -354,7 +345,7 @@ bool ModificarCita(list <Cita> &citas_)
 				}
 				cout<<"Cambiado correctamente, pulse una tecla para volver"<<endl;
 				comprobar=true;
-				sleep(3);
+				sleep(2);
 				break;    
 		   }
 	}

@@ -293,7 +293,7 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 					
 				}
 				cout<<"Cambiado correctamente, pulse una tecla para volver"<<endl;
-				sleep(3);
+				sleep(1);
 				break;
 			}
 	}
@@ -351,32 +351,57 @@ bool BorrarPaciente(list <Paciente> &pacientes_)
 
 	pacientes_.clear();
 
+
 	pacientes_=leerFicheroPacientes("pacientes.txt");
 	list<Paciente>:: iterator i;
 
-	bool encontrado = false;
-    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
-         if(i->getDNI() == dni)
-         {
-         	pacientes_.erase(i);
-         	encontrado=true;
-         }
+
+	bool comprobar=false;
+
+    for (i = pacientes_.begin(); i!= pacientes_.end(); i++) {
+         if(i->getDNI() == dni){
+
+			comprobar=true;
+			
+		   	pacientes_.erase(i);
+		   	break;
+		   	
+		   	
+
+        }
     }
-    if(encontrado==false)
+
+    
+    
+    if (comprobar==true)
     {
-    	cout<<"No se ha encontrado el paciente"<<endl;
-    	return false;
+	    if(pacientes_.empty())
+	    {
+	    	ofstream fichero("pacientes.txt");
+	    	fichero <<" ";
+	    	fichero.close();
+	    }
 
+	    else
+	    {
+	    	ofstream fichero("pacientes.txt");
+			list<Paciente>:: iterator aux;
+
+			for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
+			{
+				if(aux->getDNI()!=""&&aux->getNombre()!=""&&aux->getApellidos()!=""&&aux->getEdad()!=""&&aux->getDireccion()!="")
+				{fichero << aux->getDNI() << "," << aux->getNombre() << "," << aux->getApellidos() << "," << aux->getEdad() << "," << aux->getDireccion()<<endl;
+				}
+
+			}
+			fichero.close();
+			return true;
+	    }
+		
+    }
+    else{
+    	
+		return false;    	
     }
 
-    ofstream fichero("pacientes.txt");
-
-	list <Paciente> :: iterator aux;
-	for(aux=pacientes_.begin() ; aux!=pacientes_.end() ; aux++)
-	{
-		fichero << (*aux).getDNI() << "," << (*aux).getNombre() << "," << (*aux).getApellidos(); 
-		fichero << "," << (*aux).getEdad() << "," << (*aux).getDireccion() << endl;
-	}
-	fichero.close();
-	return true;
 }
