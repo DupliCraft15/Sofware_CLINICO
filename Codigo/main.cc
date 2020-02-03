@@ -14,7 +14,7 @@ void pausa();
 bool compruebaDia(string dia){
 
 	int aux=stoi(dia);
-	if(aux>=1||aux<=30){
+	if(aux>=1 and aux<=30){
 		return true;
 	}
 	return false;
@@ -23,7 +23,7 @@ bool compruebaDia(string dia){
 bool compruebaMes(string mes){
 
 	int aux=stoi(mes);
-	if(aux>=1||aux<=12){
+	if(aux>=1 and aux<=12){
 		return true;
 	}
 	return false;
@@ -33,7 +33,7 @@ bool compruebaMes(string mes){
 bool compruebaAno(string ano){
 
 	int aux=stoi(ano);
-	if(aux>=2000||aux<=3000){
+	if(aux>=2000 and aux<=3000){
 		return true;
 	}
 	return false;
