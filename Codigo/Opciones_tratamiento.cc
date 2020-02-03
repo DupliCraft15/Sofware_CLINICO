@@ -235,17 +235,14 @@ void AnadirTratamiento(list <Tratamiento> &tratamientos_)
 
 void ModificarTratamiento(list <Tratamiento> &tratamientos_)
 {
-	string dni,aux;
+	string dni;
 	char j[800];
 	
 
 	cout << "Introduzca el DNI del paciente a modificar su cita: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
-	while(compruebaDNI(dni)!=true)
-	{
-		cout<<"Por favor, introduzca un Dni válido: ";
-		cin >> dni; cout <<"\t";
-	}
+
+
 
 	tratamientos_.clear();
 	tratamientos_=leerFicheroTratamientos("tratamientos.txt");
@@ -315,27 +312,20 @@ void ModificarTratamiento(list <Tratamiento> &tratamientos_)
 		cout << "No encontrado"<< endl;
 	
 	}
-	if(tratamientos_.empty())
-	    {
-	    	ofstream fichero("tratamientos.txt");
-	    	fichero <<" ";
-	    	fichero.close();
-	    }
+  
+    	ofstream fichero("tratamientos.txt");
+		list<Tratamiento>:: iterator aux;
 
-	    else
-	    {
-	    	ofstream fichero("tratamientos.txt");
-			list<Tratamiento>:: iterator aux;
-
-			for(aux=tratamientos_.begin() ; aux!=tratamientos_.end() ; aux++)
+		for(aux=tratamientos_.begin() ; aux!=tratamientos_.end() ; aux++)
+		{
+			if(aux->getDNI()!=""&&aux->getNombreTratamiento()!=""&&aux->getDuracion()!="")
 			{
-				if(aux->getDNI()!=""&&aux->getNombreTratamiento()!=""&&aux->getDuracion()!="")
-				{fichero << aux->getDNI() << "," << aux->getNombreTratamiento() << "," << aux->getDuracion() <<endl;
-				}
+				fichero << aux->getDNI() << "," << aux->getNombreTratamiento() << "," << aux->getDuracion() <<endl;
 			}
-			fichero.close();
+		}
+		fichero.close();
 			
-	    }
+	    
 
 }
 
@@ -343,7 +333,7 @@ void ConsultarTratamiento(list <Tratamiento> &tratamientos_)
 
 {
 
-	string dnibuscado,dni,nombre,duracion;
+	string dnibuscado,nombre,duracion;
 	
 	cout << "Introduzca el DNI del paciente a buscar su tratamiento: "<< endl;cout <<"\t";
 	cout << "DNI: "; cin >> dnibuscado; 
@@ -373,8 +363,7 @@ void ConsultarTratamiento(list <Tratamiento> &tratamientos_)
 				    cout<<"Duración: "<<i->getDuracion()<<endl;
 				    cout<<"_____________________________"<<endl;
 				    cout<<"Pulse una tecla para continuar"<<endl;
-			         	encontrado  = true;
-			            
+			        encontrado  = true;
 			   }
 		}
 

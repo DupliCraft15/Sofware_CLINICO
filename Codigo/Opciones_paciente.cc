@@ -232,8 +232,9 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 {
 
 	string dni;
+	char j[800];
 	cout << "Introduzca el DNI del paciente a modificar: "<< endl;
-	cout << "DNI: "; cin >> dni; cout <<"\t";
+	cout <<"\t";cout << "DNI: "; cin >> dni; 
 	while(compruebaDNI(dni)!=true)
 	{
 		cout<<"Por favor, introduzca un Dni válido: ";
@@ -271,18 +272,21 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 				{
 					case '1':
 					cout<<"Introduzca el Nombre: ";
-					cin>> variable_a_cambiar;
+					cin.ignore();
+					cin.getline(j,800); 
+					variable_a_cambiar+=j;
 					(*i).setNombre(variable_a_cambiar);
-					cout<<"Variable cambiada correctamente ";
 
 
 					break;
 
 					case '2':
 					cout<<"Introduzca los apellidos: ";
-					cin>> variable_a_cambiar;
+					cin.ignore();
+					cin.getline(j,800); 
+					variable_a_cambiar+=j;
 					(*i).setApellidos(variable_a_cambiar);
-					cout<<"Variable cambiada correctamente ";
+
 
 					break;
 
@@ -294,10 +298,12 @@ void ModificarPaciente(list <Paciente> &pacientes_)
 					break;
 					
 					case '4':
-					cout<<"Introduzca la Dirección: ";
-					cin>> variable_a_cambiar;
+					cout<<"Introduzca la dirección: ";
+					cin.ignore();
+					cin.getline(j,800); 
+					variable_a_cambiar+=j;
 					(*i).setDireccion(variable_a_cambiar);
-					cout<<"Variable cambiada correctamente ";
+
 					break;
 
 					default:

@@ -341,6 +341,7 @@ void ModificarCita(list <Cita> &citas_)
 		cout << "Dni no encontrado"<< endl;
 	
 	}
+	
 	if(citas_.empty())
 	    {
 	    	ofstream fichero("citas.txt");
@@ -348,21 +349,21 @@ void ModificarCita(list <Cita> &citas_)
 	    	fichero.close();
 	    }
 
-	    else
-	    {
-	    	ofstream fichero("citas.txt");
-			list<Cita>:: iterator aux;
+    else
+    {
+    	ofstream fichero("citas.txt");
+		list<Cita>:: iterator aux;
 
-			for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
-			{
-				if(aux->getDNI()!=""&&aux->getTime()!=""&&aux->getDay()!=""&&aux->getMonth()!=""&&aux->getYear()!=""&&aux->getMotivo()!="")
-				{fichero << aux->getDNI() << "," << aux->getTime() << "," << aux->getDay() << "," << aux->getMonth() << "," << aux->getYear()<< "," << aux->getMotivo()<<endl;
-				}
-
+		for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
+		{
+			if(aux->getDNI()!=""&&aux->getTime()!=""&&aux->getDay()!=""&&aux->getMonth()!=""&&aux->getYear()!=""&&aux->getMotivo()!="")
+			{fichero << aux->getDNI() << "," << aux->getTime() << "," << aux->getDay() << "," << aux->getMonth() << "," << aux->getYear()<< "," << aux->getMotivo()<<endl;
 			}
-			fichero.close();
-			
-	    }
+
+		}
+		fichero.close();
+		
+    }
 
 }
 

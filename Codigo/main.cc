@@ -109,11 +109,14 @@ list <Tratamiento> leerFicheroTratamientos (string ruta) {
 			Tratamiento t;
 			getline(f,aux,',');
 			t.setDNI(aux);
+
 			getline(f,aux,',');
 			t.setNombreTratamiento(aux);
-			getline(f,aux,',');
+
+			getline(f,aux,'\n');
+
 			t.setDuracion(aux);
-			getline(f,aux, '\n');
+
 
 
 			tratamientos.push_back(t);
