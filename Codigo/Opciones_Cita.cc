@@ -214,6 +214,15 @@ void AnadirCita(list <Cita> &citas_)
 	mes=aux.substr(3,2);
 	ano=aux.substr(6,9);
 
+	while(compruebaDia(dia)!=true&&compruebaMes(mes)!=true&&compruebaAno(ano)!=true)
+	{
+		cout<<"Por favor, introduzca un Fecha válida: ";
+		cin>>aux; cout <<"\t";
+		dia=aux.substr(0,2);
+		mes=aux.substr(3,2);
+		ano=aux.substr(6,9);
+	}
+
 	cout<<"Motivo: "<<endl;cout <<"\t";
 	cin.ignore();
 	cin.getline(i,200); 

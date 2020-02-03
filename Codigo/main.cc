@@ -125,16 +125,24 @@ void Calendario(list <Cita> &citas_)
 
 	cout << "Tus citas son: \t" << endl;
 	int contador = 0;
+	list <Cita>::iterator i;
+
+	citas_.clear();
+	citas_=leerFicheroCitas("citas.txt");
 
 
-	for(auto i=citas_.begin(); i!=citas_.end(); i++)
+	for( i=citas_.begin(); i!=citas_.end(); i++)
 	{
+		
 
-		cout<<""<<endl;
+			cout<<""<<endl;
 		        cout<<"_____________________________"<<endl;
 			    cout<<"DNI: "<<i->getDNI()<<endl;
 			    cout<<i->getDay()<<"/"<<i->getMonth()<<"/"<<i->getYear()<<endl;
 			    cout<<"Con motivo: "<<i->getMotivo()<<endl;
+
+		
+		
 
 	}
 
@@ -184,6 +192,7 @@ int main()
 
 
         cin >> tecla;
+         system("clear");
 
 
 
@@ -210,6 +219,7 @@ int main()
 			break;
 
 			case '4':
+
 
 				Calendario(citas_);
 
