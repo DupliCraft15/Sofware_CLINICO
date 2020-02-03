@@ -10,20 +10,23 @@ using namespace std;
 class Tratamiento
 {
 private:
-	string nombreTratamiento_;
+	string dni_,nombreTratamiento_;
 	string duracion_;
 
 public:
 
-	Tratamiento(string nombreTratamiento="",string duracion=""){
+	Tratamiento(string dni="", string nombreTratamiento="",string duracion=""){
+        dni_=dni;
         nombreTratamiento_=nombreTratamiento;
         duracion_=duracion;
 	}
 	inline void setNombreTratamiento(string nombreTratamiento) {nombreTratamiento_=nombreTratamiento;};
 	inline void setDuracion(string duracion) {duracion_=duracion;};
+	inline void setDNI       (string dni)       {dni_=dni;};
 
-	inline string getDuracion() {return duracion_;};
-	inline string getNombreTratamiento() {return nombreTratamiento_;};
+	inline string getDNI     () const {return dni_;};
+	inline string getDuracion() const{return duracion_;};
+	inline string getNombreTratamiento() const{return nombreTratamiento_;};
 };
 
 

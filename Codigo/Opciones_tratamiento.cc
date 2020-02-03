@@ -1,31 +1,27 @@
 #include "Tratamiento.h"
-#include "Paciente.h"
 #include "Main.h"
-#include "Citas.h"
 #include <unistd.h>
+#include <fstream>
 #include <string>
+#include <iostream>
 using namespace std;
 
-void OpcionesTratamiento(list <Paciente> &pacientes_)
+void OpcionesTratamiento(list <Tratamiento> &tratamientos_)
 {
-
-
 
 		bool bandera=false;
 
-			char tecla;
-
 			ifstream fe("tratamiento.txt");
-		    if (!fe)
-		    {
-		    	ofstream ofs("tratamiento.txt");
-		    }
+		    if (!fe){ofstream ofs("tratamiento.txt");}
+
+		    char tecla;
 
 			do
 
 			{
 
 		    system("clear");
+		    cin.clear();
 
 		        cin.clear();
 		        cout << "-----------------------------------" << endl;
@@ -58,7 +54,7 @@ void OpcionesTratamiento(list <Paciente> &pacientes_)
 					case '1':
 						system("clear");
 
-						AnadirTratamiento(pacientes_);
+						AnadirTratamiento(tratamientos_);
 
 						cin.ignore();
 						cin.get();
@@ -69,7 +65,7 @@ void OpcionesTratamiento(list <Paciente> &pacientes_)
 					case '2':
 						system("clear");
 						
-						ConsultarTratamiento(pacientes_);
+						ConsultarTratamiento(tratamientos_);
 
 
 						cin.ignore();
@@ -80,7 +76,7 @@ void OpcionesTratamiento(list <Paciente> &pacientes_)
 					case '3':
 						system("clear");
 						
-						ModificarTratamiento(pacientes_);
+						ModificarTratamiento(tratamientos_);
 
 
 						cin.ignore();
@@ -92,7 +88,7 @@ void OpcionesTratamiento(list <Paciente> &pacientes_)
 					case '4':
 						system("clear");
 						
-						BorrarTratamiento(pacientes_);
+						BorrarTratamiento(tratamientos_);
 
 						cin.ignore();
 						cin.get();
@@ -121,150 +117,268 @@ void OpcionesTratamiento(list <Paciente> &pacientes_)
 
 
 
-void AnadirTratamiento(list <Paciente> &pacientes_){
-
-
-
-	string nombre_tratamiento,duracion,dni;
-
-	cout << "DNI del paciente a poner tratamiento: "<< endl;
-	cin>>dni;
-
-	pacientes_.clear();
-	pacientes_=leerFicheroPacientes("pacientes.txt");
-
-	list<Paciente>:: iterator i;
-    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
-         if(i->getDNI() == dni){
-             break;
-         }
-    }
-
-	if (i != pacientes_.end())
-
-	{
-		cout << "Paciente:" << (*i).getNombre()<<" "<< (*i).getApellidos()<< endl;
-		cout <<"-------------------------------"<<endl;
-		cout << "Rellene los siguientes campos: "<< endl;
-		cout <<"\t";
-		cout << "Nombre del tratamiento: "; cin >> nombre_tratamiento; cout <<""<<endl;
-		cout << "Duración del tratamiento: "; cin >> duracion; cout <<""<<endl;
-
-		Tratamiento t(nombre_tratamiento,duracion);
-
-
-		i->tratamientos_.push_back(t);
-		cout<<"Tratamiento introducido correctamente, pulse una tecla para continuar"<<endl;
-
-	}
-	else
-	{
-		cout << "Paciente no encontrado\n";
-	}
-
-}
-
-void ConsultarTratamiento(list <Paciente> pacientes_){
-
-
-
-	string nombre_tratamiento,duracion,dni;
-
-	cout << "DNI del paciente a poner tratamiento: "<< endl;
-	cin>>dni;
-	
-	list<Paciente>:: iterator i;
-    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
-         if(i->getDNI() == dni){
-             break;
-         }
-    }
-
-	if (i != pacientes_.end())
-
-	{
-		cout << "Paciente:" << (*i).getNombre()<<" "<< (*i).getApellidos()<< endl;
-		cout <<"-------------------------------"<<endl;
-		cout<< (i->tratamientos_.end()->getNombreTratamiento())<<endl;
-		cout<< (i->tratamientos_.end()->getDuracion())<<endl;
-	}
-	else{cout << "Paciente no encontrado\n";}
-}
-
-
-void ModificarTratamiento(list <Paciente> &pacientes_)
+bool BorrarTratamiento(list <Tratamiento> &tratamientos_)
 {
-
 	string dni;
-	cout << "Introduzca el DNI del paciente : "<< endl;
+	cout << "Introduzca el DNI del paciente a borrar su tratamiento: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
-
-	list<Paciente>:: iterator i;
-
-	int prueba = 0;
-
-	for(i=pacientes_.begin(); i!=pacientes_.end(); i++)
+	while(compruebaDNI(dni)!=true)
 	{
-		prueba = 0;
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dni; cout <<"\t";
+	}
 
-		if((*i).getDNI() == dni)
-		{
-			prueba++;
-			char tecla;
-			string variable_a_cambiar;
+	tratamientos_.clear();
+
+
+	tratamientos_=leerFicheroTratamientos("tratamientos.txt");
+	list<Tratamiento>:: iterator i;
+
+
+	bool comprobar=false;
+
+    for (i = tratamientos_.begin(); i!= tratamientos_.end(); i++) {
+         if(i->getDNI() == dni){
+
+			comprobar=true;
+			
+		   	tratamientos_.erase(i);
+		   	break;
+		   	
+		   	
+
+        }
+    }
+
+    
+    
+    if (comprobar==true)
+    {
+	    if(tratamientos_.empty())
+	    {
+	    	ofstream fichero("tratamientos.txt");
+	    	fichero <<" ";
+	    	fichero.close();
+	    }
+
+	    else
+	    {
+	    	ofstream fichero("tratamientos.txt");
+			list<Tratamiento>:: iterator aux;
+
+			for(aux=tratamientos_.begin() ; aux!=tratamientos_.end() ; aux++)
+			{
+				if(aux->getDNI()!=""&&aux->getNombreTratamiento()!=""&&aux->getDuracion()!="")
+				{fichero << aux->getDNI() << "," << aux->getNombreTratamiento() << "," << aux->getDuracion() <<<<endl;
+				}
+
+			}
+			fichero.close();
+			return true;
+	    }
+		
+    }
+    else{
+    	
+		return false;    	
+    }
+
+}
+
+void AnadirTratamiento(list <Tratamiento> &tratamientos_)
+
+{
+	string dni, nombre, duracion;
+	char i[800];
+	cout << "Rellene los siguientes campos"<< endl;
+	cout <<"\t";
+	cout << "DNI: "; cin >> dni; cout <<"\t";
+	while(compruebaDNI(dni)!=true)
+	{
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dni; cout <<"\t";
+	}
+	
+	cout<<"Nombre del tratamiento: "<<endl;cout <<"\t";
+	cin.ignore();
+	cin.getline(i,800); 
+	nombre+=i;
+
+	cout<<"Duración del Tratamiento: "<<endl;cout <<"\t";
+	cin.getline(i,800); 
+	duracion+=i;
+
+
+
+
+	Tratamiento t(dni,nombre,duracion);
+	tratamientos_.push_back(t);
+
+	fstream fichero ("tratamientos.txt",ios::app);
+	fichero << t.getDNI() << "," << t.getNombreTratamiento() << "," << t.getDuracion() <<endl;
+	
+	fichero.close();
+	cout<<"Tratamiento añadido con éxito"<<endl;
+	cout<<"Pulse una tecla para continuar..."<<endl;
+	
+}
+
+
+
+
+void ModificarTratamiento(list <Tratamiento> &tratamientos_)
+{
+	string dni,aux;
+	char j[800];
+	
+
+	cout << "Introduzca el DNI del paciente a modificar su cita: "<< endl;
+	cout << "DNI: "; cin >> dni; cout <<"\t";
+	while(compruebaDNI(dni)!=true)
+	{
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dni; cout <<"\t";
+	}
+
+	tratamientos_.clear();
+	tratamientos_=leerFicheroTratamientos("tratamientos.txt");
+
+	
+	list<Cita>::iterator i;
+
+	int prueba=0;
+	
+	for (i = tratamientos_.begin(); i != tratamientos_.end(); i++) 
+	{
+		   if(i->getDNI()==dni)
+		   {
+
+		   	prueba++;
+		   	char tecla;
+		   	string variable_a_cambiar;
+		        
 			cout << "Seleccione el campo a modificar (Para modificar más de un campo repita la operación)"<< endl;
-			cout << "\t1 .- Nombre del Tratamiento" << endl;
-			cout << "\t2 .- Duracion" << endl;
+			cout << "\t1 .- Nombre del tratamiento" << endl;
+			cout << "\t2 .- Duración" << endl;
 
-
+			cin>>tecla;
 
 				switch(tecla)
 				{
 					case '1':
-					cout<<"Introduzca el Nombre del tratamiento: ";
-					cin>> variable_a_cambiar;
-					i->tratamientos_.end()->setNombreTratamiento(variable_a_cambiar);
+					cout<<"Introduzca el nombre del tratamiento: ";
+
+					cin.ignore();
+					cin.getline(j,800); 
+					variable_a_cambiar+=j;
+					(*i).setNombreTratamiento(variable_a_cambiar);
+					
 
 					break;
 
 					case '2':
-					cout<<"Introduzca la duración: ";
-					cin>> variable_a_cambiar;
-					i->tratamientos_.end()->setDuracion(variable_a_cambiar);
+					cout<<"Introduzca la duracion: ";
+					cin.ignore();
+					cin.getline(j,800); 
+					variable_a_cambiar+=j;
+					(*i).setDuracion(variable_a_cambiar);
+					
 
 					break;
+
 
 					default:
 
 					cout<<"Opción incorrecta"<<endl;
-
+					
 					break;
+
+					
 				}
-			}
+				cout<<"Variable cambiada correctamente, pulse una tecla para volver"<<endl;
+				
+				sleep(1);
+				break;    
+		   }
 	}
 
 	if(prueba==0)
 	{
-		cout << "Paciente no encontrado"<< endl;
+	
+		cout << "No encontrado"<< endl;
+	
 	}
+	if(tratamientos_.empty())
+	    {
+	    	ofstream fichero("tratamientos.txt");
+	    	fichero <<" ";
+	    	fichero.close();
+	    }
+
+	    else
+	    {
+	    	ofstream fichero("tratamientos.txt");
+			list<Tratamiento>:: iterator aux;
+
+			for(aux=tratamientos_.begin() ; aux!=tratamientos_.end() ; aux++)
+			{
+				if(aux->getDNI()!=""&&aux->getNombreTratamiento()!=""&&aux->getDuracion()!="")
+				{fichero << aux->getDNI() << "," << aux->getNombreTratamiento() << "," << aux->getDuracion() <<<<endl;
+				}
+			}
+			fichero.close();
+			
+	    }
+
 }
 
-void BorrarTratamiento(list <Paciente> &pacientes_){
-	string nombre_tratamiento,duracion,dni;
-	cout << "DNI del paciente a poner tratamiento: "<< endl;
-	cin>>dni;
-	list<Tratamiento>::iterator aux;
+void BuscarTratamiento(list <Tratamiento> &tratamientos_)
 
-	list<Paciente>:: iterator i;
-    for (i = pacientes_.begin(); i != pacientes_.end(); i++) {
-         if(i->getDNI() == dni){
-             break;
-         }
-    }
+{
 
-	if (i != pacientes_.end())
+	string dnibuscado,dni,nombre,duracion;
+	
+	cout << "Introduzca el DNI del paciente a buscar su tratamiento: "<< endl;
+	cout << "DNI: "; cin >> dnibuscado; cout <<"\t";
+
+	while(compruebaDNI(dnibuscado)!=true)
 	{
-		i->tratamientos_.pop_back();
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dnibuscado; cout <<"\t";
 	}
-	else{cout << "Paciente no encontrado\n";}
+	
+	ifstream fichero("tratamientos.txt");
+
+	if(!fichero.eof()){
+
+		tratamientos_.clear();
+		tratamientos_=leerFicheroTratamientos("tratamientos.txt");
+		list<Tratamiento>:: iterator i;
+		bool encontrado = false;
+		for (i = tratamientos_.begin(); i != tratamientos_.end(); i++) 
+		{
+			   if(i->getDNI() == dnibuscado)
+			   {
+			        cout<<""<<endl;
+			        cout<<"_____________________________"<<endl;
+				    cout<<"DNI: "<<i->getDNI()<<endl;
+				    cout<<"Nombre del tratamiento: "<<i->getNombreTratamiento()<<endl;
+				    cout<<"Duración: "<<i->getDuracion()<<endl;
+				    cout<<"_____________________________"<<endl;
+				    cout<<"Pulse una tecla para continuar"<<endl;
+			         	encontrado  = true;
+			            
+			   }
+		}
+
+		if (!encontrado)
+		{
+
+			cout << "No encontrado\n";
+		}
+
+	}
+	else{
+		cout<<"Base de datos de tratamientos vacía"<<endl;
+	}
 }
