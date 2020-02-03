@@ -6,6 +6,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <string>
+#include <cctype>
 using namespace std;
 
 
@@ -39,19 +40,35 @@ bool compruebaAno(string ano){
 	return false;
 }
 
+bool esNumero(const string &str)
+{
+    auto it = str.begin();
+    if (*it == '-') { it++; }
+    while (it != str.end() && std::isdigit(*it)) ++it;
+    return !str.empty() && it == str.end();
+}
 
 bool compruebaDNI(string dni){
-	if(dni.length()!=9)
-	{
-		return false;
-  	}
 
-	else
-	{
-		return true;
-	}
-    
-	
+        if (dni.size() != 9) {
+            cout<<"ERROR: DNI no valido"<<endl;
+            return false;
+        }
+
+        string numeros = dni.substr(0, 8);
+        if (!esNumero(numeros)) {
+            cout<<"ERROR: DNI no valido"<<endl;
+            return false;
+        }
+
+        dni[8] = toupper(dni[8]);
+        char letras[] = "TRWAGMYFPDXBNJZSQVHLCKE";
+        char letra = letras[stoi(dni) % 23];
+        if (dni[8] != letra) {
+            cout<<"ERROR: DNI no valido"<<endl;
+            return false;
+        }
+        return true;
 }
 
 
@@ -124,7 +141,7 @@ void Calendario(list <Cita> &citas_)
 {
 
 	cout << "Tus citas son: \t" << endl;
-	int contador = 0;
+	bool comprobar=true;
 	list <Cita>::iterator i;
 
 	citas_.clear();
@@ -134,20 +151,24 @@ void Calendario(list <Cita> &citas_)
 	for( i=citas_.begin(); i!=citas_.end(); i++)
 	{
 		
+		if(i->getDNI()=="" and i->getDay()=="" and i->getMonth()=="" and i->getYear()=="" and i->getTime()=="")
+		{
+			comprobar=false;
+			cout<<"No hay citas en la base de datos"<<endl;
+		}
+
+		if(comprobar==true)
+		{
 
 			cout<<""<<endl;
-		        cout<<"_____________________________"<<endl;
-			    cout<<"DNI: "<<i->getDNI()<<endl;
-			    cout<<i->getDay()<<"/"<<i->getMonth()<<"/"<<i->getYear()<<endl;
-			    cout<<"Con motivo: "<<i->getMotivo()<<endl;
-
-		
-		
-
+	        cout<<"_____________________________"<<endl;
+		    cout<<"DNI: "<<i->getDNI()<<endl;
+		    cout<<i->getDay()<<"/"<<i->getMonth()<<"/"<<i->getYear()<<endl;
+		    cout<<"Hora: "<<i->getTime()<<endl;
+		    cout<<"Con motivo: "<<i->getMotivo()<<endl;
+		}
 	}
-
 	cout<<"Pulsa una tecla para salir"<<endl;
-
 	cin.ignore();
 	cin.get();
 }

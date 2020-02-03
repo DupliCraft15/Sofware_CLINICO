@@ -51,7 +51,7 @@ void OpcionesCita(list <Cita> &citas_)
 					system("clear");
 
 					AnadirCita(citas_);
-
+					cout<<"Pulse una tecla para continuar..."<<endl;
 					cin.ignore();
                     cin.get();
 				break;
@@ -239,7 +239,6 @@ void AnadirCita(list <Cita> &citas_)
 	
 	fichero.close();
 	cout<<"Cita añadida con exito a su calendario!"<<endl;
-	cout<<"Pulse una tecla para continuar..."<<endl;
 	
 }
 
@@ -395,6 +394,7 @@ void BuscarCita(list<Cita> &citas_)
 		        cout<<"_____________________________"<<endl;
 			    cout<<"DNI: "<<i->getDNI()<<endl;
 			    cout<<i->getDay()<<"/"<<i->getMonth()<<"/"<<i->getYear()<<endl;
+			    cout<<"Hora: "<<i->getTime()<<endl;
 			    cout<<"Con motivo: "<<i->getMotivo()<<endl;
 			    cout<<"_____________________________"<<endl;
 			    

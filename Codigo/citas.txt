@@ -1,8 +1,2 @@
-<<<<<<< HEAD
-46266671D,18:0,12,12,1212,adfdajkf jdasfjdf
-666666666,adsf,12,12,1212,dsfasdf asdfadsfa
-46266671G,18:00,32,01,2020,cacatua jaja
-=======
-333333333,12:oo,12,12,12,afddafdaf dasd
-444444444,12:00,12,12,12,asdffsda asdfadfadsfsdfsa
->>>>>>> 6bffae87181143189b6657673aec5a47bb7585de
+20228782Y,14:00,14,12,2020,Dolor de ojos
+46266671D,17:00,15,12,2020,Resfriado anal
