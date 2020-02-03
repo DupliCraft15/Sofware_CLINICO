@@ -129,10 +129,15 @@ void Calendario(list <Cita> &citas_)
 
 	for(auto i=citas_.begin(); i!=citas_.end(); i++)
 	{
-		cout << "El paciente "<< (*i).getDNI() <<" tiene como hora " << (*i).getTime() << " dia "<< (*i).getDay() << " mes " << (*i).getMonth() <<" año " << (*i).getYear() <<" y motivo: " << (*i).getMotivo() << endl;
+
+		cout<<""<<endl;
+		        cout<<"_____________________________"<<endl;
+			    cout<<"DNI: "<<i->getDNI()<<endl;
+			    cout<<i->getDay()<<"/"<<i->getMonth()<<"/"<<i->getYear()<<endl;
+			    cout<<"Con motivo: "<<i->getMotivo()<<endl;
+
 	}
 
-	cout << "Ya no hay mas citas programada"<<endl;
 	cout<<"Pulsa una tecla para salir"<<endl;
 
 	cin.ignore();
@@ -142,7 +147,7 @@ void Calendario(list <Cita> &citas_)
 
 int main()
 {
-	system("clear");
+	
 
 	bool bandera=false;
 
@@ -158,6 +163,7 @@ int main()
 	do
 
     {
+    	system("clear");
         cin.clear();
         cout << "----------------------------------" << endl;
         cout << "             CLINICA              " << endl;

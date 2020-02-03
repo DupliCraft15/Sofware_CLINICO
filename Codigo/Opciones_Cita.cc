@@ -240,6 +240,7 @@ void AnadirCita(list <Cita> &citas_)
 void ModificarCita(list <Cita> &citas_)
 {
 	string dni,aux;
+	
 
 	cout << "Introduzca el DNI del paciente a modificar su cita: "<< endl;
 	cout << "DNI: "; cin >> dni; cout <<"\t";
@@ -303,7 +304,10 @@ void ModificarCita(list <Cita> &citas_)
 
 					case '3':
 					cout<<"Introduzca el motivo: ";
-					cin>>variable_a_cambiar;
+					char j[800];
+					cin.ignore();
+					cin.getline(j,800); 
+					variable_a_cambiar+=j;
 					(*i).setMotivo(variable_a_cambiar);
 					
 					break;
