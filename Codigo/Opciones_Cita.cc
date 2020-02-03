@@ -73,16 +73,8 @@ void OpcionesCita(list <Cita> &citas_)
 
 					system("clear");
 
-					if(ModificarCita(citas_)==true)
-					{
-						cout<<"Modificada correctamente, pulse una tecla para continuar"<<endl;
-					}
-					else
-					{
-						cout<<"Cita no encontrada o no ha sido posible modificarla"<<endl;
-					}
-
-
+					ModificarCita(citas_);
+				
 
 					cin.ignore();
                     cin.get();
@@ -113,6 +105,7 @@ void OpcionesCita(list <Cita> &citas_)
 				case '5':
 
 						bandera=true;
+						system("clear");
 				break;
 
 				default:
@@ -198,8 +191,8 @@ bool BorrarCita(list <Cita> &citas_)
 void AnadirCita(list <Cita> &citas_)
 
 {
-	string hora,dia,mes,ano,aux;
-	string motivo, dni;
+	string hora,dia,mes,ano,aux,dni,motivo;
+	char i[200];
 	cout << "Introduzca los datos de la cita"<< endl;
 	cout <<"\t";
 	cout << "DNI: "; cin >> dni; cout <<"\t";
@@ -221,9 +214,11 @@ void AnadirCita(list <Cita> &citas_)
 	mes=aux.substr(3,2);
 	ano=aux.substr(6,9);
 
-	cout<<"Motivo: "<<endl;
-	
-	getline(std::cin,motivo); cout <<"\t";
+	cout<<"Motivo: "<<endl;cout <<"\t";
+	cin.ignore();
+	cin.getline(i,200); 
+	motivo+=i;
+
 
 
 
@@ -236,103 +231,81 @@ void AnadirCita(list <Cita> &citas_)
 	fichero.close();
 	cout<<"Cita añadida con exito a su calendario!"<<endl;
 	cout<<"Pulse una tecla para continuar..."<<endl;
-	sleep(2);
+	
 }
 
 
 
 
-bool ModificarCita(list <Cita> &citas_)
+void ModificarCita(list <Cita> &citas_)
 {
-	string dia,mes,ano,hora;
-	string motivo,aux;
-	cout << "Introduzca los datos de la cita que quiere modificar"<< endl; cout <<"\t";
-	cout << "Hora: "; cin >> hora; cout <<"\t";
+	string dni,aux;
 
-	cout << "Día: "; cin >> dia; cout <<"\t";
-
-	while(compruebaDia(dia)!=true)
+	cout << "Introduzca el DNI del paciente a modificar su cita: "<< endl;
+	cout << "DNI: "; cin >> dni; cout <<"\t";
+	while(compruebaDNI(dni)!=true)
 	{
-		cout<<"Por favor, introduzca un dia válido: ";
-		cin >> dia; cout <<"\t";
-	}
-
-
-	cout << "Mes: "; cin >> mes; cout <<"\t";
-
-	while(compruebaMes(mes)!=true)
-	{
-		cout<<"Por favor, introduzca un mes válido: ";
-		cin >> mes; cout <<"\t";
-	}
-
-	cout << "Año: "; cin >> ano; cout <<"\t";
-
-	while(compruebaAno(ano)!=true)
-	{
-		cout<<"Por favor, introduzca un Año válido: ";
-		cin >> ano; cout <<"\t";
+		cout<<"Por favor, introduzca un Dni válido: ";
+		cin >> dni; cout <<"\t";
 	}
 
 	citas_.clear();
 	citas_=leerFicheroCitas("citas.txt");
+
 	
 	list<Cita>::iterator i;
-	bool comprobar=false;
 
+	int prueba=0;
 	
 	for (i = citas_.begin(); i != citas_.end(); i++) 
 	{
-		   if(i->getTime()==hora and i->getDay() == dia and i->getMonth()==mes and i->getYear()==ano)
+		   if(i->getDNI()==dni)
 		   {
+
+		   	prueba++;
+		   	char tecla;
+		   	string variable_a_cambiar;
 		        
 			cout << "Seleccione el campo a modificar (Para modificar más de un campo repita la operación)"<< endl;
 			cout << "\t1 .- Hora" << endl;
-			cout << "\t2 .- Dia" << endl;
-			cout << "\t3 .- Mes" << endl;
-			cout << "\t4 .- Año" << endl;
-			cout << "\t4 .- Motivo" << endl;
-			char tecla;
+			cout << "\t2 .- Fecha" << endl;
+			cout << "\t3 .- Motivo" << endl;
+
 			cin>>tecla;
 
 				switch(tecla)
 				{
 					case '1':
 					cout<<"Introduzca la hora: ";
-					cin>>hora;
-					(*i).setTime(hora);
-					cout<<"Variable cambiada correctamente ";
-
+					cin>> variable_a_cambiar;
+					(*i).setTime(variable_a_cambiar);
+					
 
 					break;
 
 					case '2':
-					cout<<"Introduzca el dia: ";
-					cin>>dia;
-					(*i).setDay(dia);
-					cout<<"Variable cambiada correctamente ";
+					cout<<"Introduzca la Fecha: "<<endl;
+					cout<<"(Por favor siga el formato 'dd/mm/yy' ej:01/02/2020)"<<endl;cout <<"\t";
+					cin>>variable_a_cambiar; cout <<"\t";
+
+					aux=variable_a_cambiar.substr(0,2);
+					(*i).setDay(aux);
+
+					aux=variable_a_cambiar.substr(3,2);
+					(*i).setMonth(aux);
+
+					aux=variable_a_cambiar.substr(6,9);
+					(*i).setYear(aux);
+					
 
 					break;
+
 
 					case '3':
-					cout<<"Introduzca el mes: ";
-					cin>>mes;
-					(*i).setMonth(mes);
-					cout<<"Variable cambiada correctamente ";
-					break;
-					
-					case '4':
-					cout<<"Introduzca el año: ";
-					cin>>ano;
-					(*i).setYear(ano);
-					cout<<"Variable cambiada correctamente ";
-					break;
-
-					case '5':
 					cout<<"Introduzca el motivo: ";
-					cin>>motivo;
-					(*i).setMotivo(motivo);
-					cout<<"Variable cambiada correctamente ";
+					cin>>variable_a_cambiar;
+					(*i).setMotivo(variable_a_cambiar);
+					
 					break;
 
 					default:
@@ -343,78 +316,68 @@ bool ModificarCita(list <Cita> &citas_)
 
 					
 				}
-				cout<<"Cambiado correctamente, pulse una tecla para volver"<<endl;
-				comprobar=true;
-				sleep(2);
+				cout<<"Variable cambiada correctamente, pulse una tecla para volver"<<endl;
+				
+				sleep(1);
 				break;    
 		   }
 	}
 
-	if(comprobar)
+	if(prueba==0)
 	{
-		ofstream fichero("citas.txt");
-		list <Cita> :: iterator aux;
+	
+		cout << "Dni no encontrado"<< endl;
+	
+	}
+	if(citas_.empty())
+	    {
+	    	ofstream fichero("citas.txt");
+	    	fichero <<" ";
+	    	fichero.close();
+	    }
 
-		for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
-		{
-			if (aux->getDNI()!=""&&aux->getTime()!=""&&aux->getDay()!=""&&aux->getMonth()!=""&&aux->getYear()!=""&&aux->getMotivo()!="")
+	    else
+	    {
+	    	ofstream fichero("citas.txt");
+			list<Cita>:: iterator aux;
+
+			for(aux=citas_.begin() ; aux!=citas_.end() ; aux++)
 			{
-				fichero <<(*aux).getDNI() << "," << (*aux).getTime() << "," << (*aux).getDay() << "," << (*aux).getMonth() << "," << (*aux).getYear() << (*aux).getMotivo() << endl;
+				if(aux->getDNI()!=""&&aux->getTime()!=""&&aux->getDay()!=""&&aux->getMonth()!=""&&aux->getYear()!=""&&aux->getMotivo()!="")
+				{fichero << aux->getDNI() << "," << aux->getTime() << "," << aux->getDay() << "," << aux->getMonth() << "," << aux->getYear()<< "," << aux->getMotivo()<<endl;
+				}
+
 			}
-		}
-		fichero.close();
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+			fichero.close();
+			
+	    }
 
 }
 
 void BuscarCita(list<Cita> &citas_)
 {
-	string dia,mes,ano;
+	string dia,mes,ano,aux;
+
 	int vacio=0;
 
-	cout << "Introduzca el dia de la cita a buscar"<< endl;
-	cout <<"\t";
-	cout << "Día: "; cin >> dia; cout <<"\t";
-
-	while(compruebaDia(dia)!=true)
-	{
-		cout<<"Por favor, introduzca un dia válido: ";
-		cin >> dia; cout <<"\t";
-	}
-
-
-	cout << "Mes: "; cin >> mes; cout <<"\t";
-
-	while(compruebaMes(mes)!=true)
-	{
-		cout<<"Por favor, introduzca un mes válido: ";
-		cin >> mes; cout <<"\t";
-	}
-
-	cout << "Año: "; cin >> ano; cout <<"\t";
-
-	while(compruebaAno(ano)!=true)
-	{
-		cout<<"Por favor, introduzca un Año válido: ";
-		cin >> ano; cout <<"\t";
-	}
+	cout<<"Introduzca la fecha concreta que desee consultar sus citas: "<<endl;cout <<"\t";
+	cout<<"(Por favor siga el formato 'dd/mm/yy' ej:01/02/2020)"<<endl;cout <<"\t";
+	cin>>aux; cout <<"\t";
+	dia=aux.substr(0,2);
+	mes=aux.substr(3,2);
+	ano=aux.substr(6,9);
 
 
 	citas_.clear();
 	citas_=leerFicheroCitas("citas.txt");
 
 	list<Cita>:: iterator i;
-	bool encontrado = false;
+	cout << "Las citas que tiene para este dia son" << endl;
 	for (i = citas_.begin(); i != citas_.end(); i++) 
 	{
-		   if(i->getDay() == dia and i->getMonth()==mes and i->getYear()==ano)
+		   if(i->getDay() == dia && i->getMonth()==mes && i->getYear()==ano)
 		   {
-		   		cout << "Las citas que tiene para este dia son" << endl;
+		   		
 		        cout<<""<<endl;
 		        cout<<"_____________________________"<<endl;
 			    cout<<"DNI: "<<i->getDNI()<<endl;
@@ -422,19 +385,17 @@ void BuscarCita(list<Cita> &citas_)
 			    cout<<"Con motivo: "<<i->getMotivo()<<endl;
 			    cout<<"_____________________________"<<endl;
 			    
-			    sleep(2);
-		        encontrado=true;
+			   
+		        
 		        vacio++;
 		   }
 
 	}
 
-	if (!encontrado)
+	if (vacio==0)
 	{
 		cout << "No hay citas para ese dia\n";
 	}
-	else if(vacio==0)
-	{
-		cout<<"No hay citas en la base de datos"<<endl;
-	}
+
+	cout<<"Pulse una tecla para continuar..."<<endl;
 }

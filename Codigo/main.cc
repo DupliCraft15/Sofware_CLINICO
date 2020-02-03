@@ -92,12 +92,19 @@ list <Cita> leerFicheroCitas (string ruta) {
 			Cita c;
 			getline(f,aux,',');
 			c.setDNI(aux);
+
 			getline(f,aux,',');
 			c.setTime(aux);
+
+			getline(f,aux,',');
+			c.setDay(aux);
+
 			getline(f,aux,',');
 			c.setMonth(aux);
-			getline(f,aux,',');
+
+			getline(f,aux, ',');
 			c.setYear(aux);
+
 			getline(f,aux, '\n');
 			c.setMotivo(aux);
 
@@ -110,6 +117,8 @@ list <Cita> leerFicheroCitas (string ruta) {
 
 	return citas;
 }
+
+
 
 void Calendario(list <Cita> &citas_)
 {

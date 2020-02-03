@@ -112,8 +112,8 @@ void OpcionesPaciente(list <Paciente> &pacientes_){
 bool AnadirPaciente(list <Paciente> &pacientes_)
 {
     //Creamos un paciente
-	string dni,nombre,apellidos,direccion;
-	string edad;
+	string dni,nombre,apellidos,direccion,edad;
+	char cadena[200];
 
 	cout << "A continuación introduzca los datos del paciente a añadir sin espacios)"<< endl;
 	cout <<"\t";
@@ -139,15 +139,31 @@ bool AnadirPaciente(list <Paciente> &pacientes_)
     }
 
 
-	cout << "Nombre: "; cin >> nombre; cout <<"\t";
-	cout << "Apellidos: "; cin >> apellidos; cout <<"\t";
+	cout << "Nombre: "; 
+	cin.ignore();
+	cin.getline(cadena,200); cout <<"\t";
+	nombre+=cadena;
+ 	cin.sync();
+
+	cout << "Apellidos: "; 
+
+	cin.getline(cadena,200); cout <<"\t";
+	apellidos+=cadena;
+	
 	cout << "Edad: "; cin >> edad; cout <<"\t";
-	cout << "Direccion: "; cin >> direccion; cout <<"\t";
+
+	cout << "Direccion: "; 
+	cin.ignore();
+	cin.getline(cadena,200); cout <<"\t";
+	direccion+=cadena;
+
 
 	Paciente p(dni,nombre,apellidos,edad,direccion);
    
 	//De haber llegado a este punto simplemente podemos proceder a añadir el paciente a la lista	
 		pacientes_.push_back(p);
+
+
 
     //Actualizamos el archivo
 	fstream fichero ("pacientes.txt",ios::app);

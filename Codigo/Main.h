@@ -35,7 +35,7 @@ void BorrarTratamiento(list<Paciente> &pacientes_);
 
 void OpcionesCita(list <Cita> &citas_);
 void AnadirCita(list <Cita> &citas_);
-bool ModificarCita(list <Cita> &citas_);
+void ModificarCita(list <Cita> &citas_);
 void BuscarCita(list <Cita> &citas_);
 bool BorrarCita(list <Cita> &citas_);
 list <Cita> leerFicheroCitas (string ruta);
